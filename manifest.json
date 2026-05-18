@@ -1,0 +1,21 @@
+{
+  "short_name": "Sembrador",
+  "name": "El Pequeño Sembrador V2.0",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#050505",
+  "theme-color": "#050505",
+  "display": "standalone",
+  "orientation": "landscape"
+}

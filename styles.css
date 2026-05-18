@@ -1,0 +1,1502 @@
+/* --- ADN VISUAL PEQUEÑO SEMBRADOR V2.0 --- */
+:root { 
+    /* Márgenes de Seguridad de la Hoja */
+    --h1-mt: 60mm; 
+    --h2-mt: 20mm; 
+    
+    /* Variables Globales */
+    --zoom-level: 0.65; 
+    --accent: #a7a4a4;
+    --accent-rgb: 167, 164, 164; 
+    --paper: #fff; 
+    --ink: #000; 
+    --ac-clr: #ff4081;
+
+    /* ADN de Pandora (Control Global) */
+    --t-fn: 'Fray Gabriel', serif; --t-sz: 25pt; --t-clr: #000; --t-al: center;
+    --a-fn: 'Tahoma'; --a-sz: 10pt; --a-clr: #444; --a-al: center;
+    --l-fn: 'Tahoma'; --l-sz: 11pt; --l-clr: #000; --l-al: left;
+    --ac-fn: 'Courier New'; --ac-sz: 12pt;
+    --l-lh: 2.6; /* 🚀 Ajustado: Interlineado natural, los acordes ahora flotan por fuera */
+}
+
+body { 
+    background:#050505; margin:0; display:flex; 
+    flex-direction:column; height:100vh; 
+    font-family:'Segoe UI',sans-serif; overflow:hidden; color:#eee; 
+}
+
+/* ============================================================
+   🛰️ PUENTE DE MANDO RECONSTRUIDO V2.0 (GLASS SEAMLESS)
+   ============================================================ */
+#top-bar {
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-50%) translateY(0); /* Fijo por defecto */
+    height: 75px;
+    width: 96%;
+    max-width: 900px;
+    background: rgba(14, 14, 14, 0.88) !important;
+    backdrop-filter: blur(30px) saturate(130%);
+    -webkit-backdrop-filter: blur(30px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: none !important;
+    border-radius: 0 0 25px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    z-index: 50000;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); /* Rebote de seda */
+    box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+    box-sizing: border-box;
+}
+
+/* Clase reactiva disparada por el JavaScript para la persiana total */
+#top-bar.bar-escondida {
+    transform: translateX(-50%) translateY(-100%);
+    box-shadow: none;
+}
+
+/* 🎯 EL GATILLO INVISIBLE DE LA PERSIANA (LABIO FLOTANTE) */
+#gatillo-top-bar {
+    position: absolute;
+    bottom: -24px; left: 50%;
+    transform: translateX(-50%);
+    width: 45px; height: 24px;
+    background: rgba(14, 14, 14, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--accent); cursor: pointer;
+    z-index: 50001;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    -webkit-tap-highlight-color: transparent;
+}
+#top-bar.bar-escondida #gatillo-top-bar {
+    bottom: -25px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: none;
+    background: rgba(20, 20, 20, 0.98);
+}
+
+/* 🔮 HOMOGENEIZACIÓN DE BOTONES PELUDOS MAJESTUOSOS (REDONDOS) */
+.cmd-group { display: flex; align-items: center; gap: 8px; }
+.cmd-sep { width: 1px; height: 20px; background: rgba(255, 255, 255, 0.08); }
+
+.btn-peludo-top {
+    width: 44px; height: 44px;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 50% !important; /* Fuerza la geometría esférica */
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+    transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Reacción elástica al tacto o al click */
+.btn-peludo-top:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: scale(1.08);
+}
+.btn-peludo-top:active { 
+    transform: scale(0.95); 
+}
+
+/* 🌟 PALETA DE COLOR LITÚRGICA FLUO (DES DESTIERRO DE LA TRISTEZA VISUAL) */
+.icon-top {
+    width: 30px; height: 30px;
+    fill: none;
+    stroke-width: 0.5px;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: all 0.2s ease;
+}
+/* Inyectamos el tono verde esmeralda al Creador Atómico */
+.btn-add-box { 
+    color: #ffffff !important; 
+    border-color: rgba(229, 233, 231, 0.15) !important;
+    filter: drop-shadow(0 0 5px rgba(0,230,118,0.4));
+}
+
+/* Inyección de atmósfera neón controlada por familias */
+.btn-view svg  { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(0,229,255,0.4)); } /* Cian Eléctrico */
+.btn-hoja svg  { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(224,64,251,0.4)); } /* Lavanda Intenso */
+.btn-load svg  { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(0,230,118,0.4)); } /* Verde Radiactivo */
+.btn-save svg  { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(41,121,255,0.4)); } /* Azul Cobalto */
+.btn-music svg { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(255,214,0,0.4)); }  /* Oro Puro */
+.btn-ficha svg { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(255,145,0,0.4)); }  /* Naranja Fuego */
+.btn-luna svg  { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(101,31,255,0.4)); }  /* Índigo OLED */
+.btn-purge svg { stroke: #ffffff; filter: drop-shadow(0 0 5px rgba(255,23,68,0.4)); }   /* Carmesí Purga */
+
+/* El texto indicador del nivel de Zoom técnico */
+#zoom-txt {
+    font-family: 'Courier New', monospace; font-size: 15px; font-weight: bold;
+    background: rgba(255,255,255,0.06); color: var(--accent);
+    padding: 6px 8px; border-radius: 8px; min-width: 32px; text-align: center;
+}
+
+/* Sincronización del Perfil de Google en la esquina derecha */
+#user-profile-dock { display: flex; align-items: center; position: relative; margin-left: 10px; }
+#user-avatar-btn {
+    width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.15);
+    background: #222; background-size: cover; background-position: center;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: bold; color: white; text-transform: uppercase;
+}
+.dropdown-line { width: 100%; height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0; }
+
+
+/* 1. EL CONTENEDOR MAESTRO: Un túnel limpio bajo la Top Bar */
+#main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* 🚀 Pantalla completa real */
+    display: flex;
+    overflow: hidden;
+    background: #050505;
+    margin-top: 0;
+}
+
+/* 2. PANDORA (Izquierda) y BIBLIOTECA (Derecha): Capas Flotantes */
+#pandora, #biblioteca {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 340px;
+    background: rgba(12, 12, 12, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 10000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#pandora { left: -340px; border-right: 1px solid #333; }
+#biblioteca { right: -340px; border-left: 1px solid #333; }
+
+#biblioteca {
+    position: absolute;
+    /* 🚀 Aumenta este valor para empujar el panel hacia abajo */
+    top: 42px; 
+    
+    bottom: 20px; /* Opcional: añade margen abajo para que no pegue al suelo */
+    right: -340px; 
+    width: 320px;
+    background: rgba(12,12,12,0.98);
+    backdrop-filter: blur(15px);
+    border-left: 1px solid #333;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 30000;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    border-radius: 15px 0 0 15px; /* Opcional: redondeado para que se vea más pulcro */
+}
+
+#toggle-p { 
+    position:absolute; 
+    left:0px; 
+    top:50%; 
+    width:35px; 
+    height:50px; 
+    background:#222; 
+    border:1px solid #444444; 
+    border-left:none; 
+    border-radius:0 8px 8px 0; 
+    cursor:pointer; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    color:var(--accent); 
+    font-weight:bold; 
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: 30000; 
+}
+
+#toggle-b {
+    position: absolute;
+    left: -30px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 60px;
+    background: var(--accent);
+    color: black; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 12px 0 0 12px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: -5px 0 15px rgba(var(--accent-rgb), 0.3);
+    z-index: 31000; /* 🚀 Ajustado: Siempre por encima */
+    transition: background 0.3s ease;
+}
+#toggle-b:hover {
+    filter: brightness(1.2);
+}
+
+/* Módulos y Laboratorio - Seda 2.0 */
+.menu-section { margin-bottom:12px; border:1px solid #222; border-radius:8px; background:rgba(20,20,20,0.5); overflow:hidden; }
+.menu-header { padding:10px; background:rgba(35,35,35,0.8); font-size:9px; font-weight:900; color:#888; text-transform:uppercase; border-bottom:1px solid #222; cursor:pointer; }
+.menu-content { padding:12px; display:flex; flex-direction:column; gap:10px; }
+
+input, select, textarea { 
+    width:100%; background:#000; border:1px solid #333; 
+    padding:7px; color:#fff; border-radius:5px; 
+    font-size:11px; outline:none; box-sizing: border-box;
+}
+
+.slider-container { display: flex; align-items: center; gap: 10px; }
+.sz-badge { background: var(--accent); color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 900; min-width: 30px; text-align: center; }
+
+/* Control del Slider Estético */
+input[type="range"] {
+    flex-grow: 1; -webkit-appearance: none; appearance: none;
+    background: #222; height: 4px; border-radius: 5px; cursor: pointer; outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; height: 16px; width: 16px;
+    border-radius: 50%; background: #fff;
+    cursor: pointer; box-shadow: 0 0 10px var(--accent);
+}
+
+.color-grid { display: grid !important; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-bottom: 5px; }
+.color-dot { height: 18px; border-radius: 3px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.color-dot:hover { transform: scale(1.1); border-color: #fff; }
+
+.align-group { display: flex; gap: 3px; background: #000; border: 1px solid #222; border-radius: 6px; padding: 3px; }
+.al-btn { flex:1; background:none; border:none; color:#444; cursor:pointer; display:flex; justify-content:center; align-items:center; padding:6px; border-radius:4px; transition: 0.2s; }
+.al-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.al-btn:hover { color: #888; background: rgba(255,255,255,0.05); }
+.al-btn.active { color: var(--accent); background: #111; }
+
+#viewport {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto; /* 🚀 Aquí nace el scroll vertical */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra las hojas horizontalmente */
+    padding: 40px 0; /* Menos aire arriba porque ya no estorba la barra */
+    z-index: 1;
+}
+
+/* 4. EL LIBRO: El riel donde se forman las hojas */
+#libro {
+    display: flex;
+    flex-direction: column; /* 🚀 Una debajo de otra */
+    align-items: center;
+    gap: 60px; /* Separación entre Hoja 1 y Hoja 2 */
+    transform: scale(var(--zoom-level));
+    transform-origin: top center;
+    transition: transform 0.2s ease;
+    
+}
+
+.hoja {
+    width: 215.9mm;
+    height: 279.4mm;
+    background: var(--paper);
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    
+    /* 🚀 EL MARCO: Corona superior y listón izquierdo */
+    border-top: 8px solid var(--accent); 
+    border-left: 4px solid var(--accent); /* Un poco más delgado que el superior para no saturar */
+    border-right: 4px solid var(--accent); /* Un poco más delgado que el superior para no saturar */
+    /* Seda pura en el cambio de color */
+    transition: background 0.4s ease, border-color 0.4s ease;
+    
+    /* Aseguramos que los bordes no resten tamaño a la hoja */
+    box-sizing: border-box; 
+    
+    overflow: visible; 
+}
+
+
+/* --- CONEXIÓN DINÁMICA DE TEXTOS (ÚNICA Y DEFINITIVA) --- */
+#v-titulo { 
+    font-family: var(--t-fn); 
+    font-size: var(--t-sz); 
+    color: var(--t-clr); 
+    text-align: var(--t-al); 
+    margin: 0; 
+    text-transform: uppercase; 
+    line-height: 1.2;
+}
+
+#v-autor { 
+    font-family: var(--a-fn); 
+    font-size: var(--a-sz); 
+    color: var(--a-clr); 
+    text-align: var(--a-al); 
+    margin: 5px 0 0 0; 
+    font-style: italic; 
+}
+
+/* Corona y Nota */
+.sep-seda-bold { width:90%; height:4px; margin: 10px auto; background: radial-gradient(ellipse at center, var(--accent) 0%, transparent 85%); opacity:0.8; }
+.corona { padding:18mm 15mm 5mm; text-align:center; position: relative; }
+
+
+
+
+
+
+
+/* --- MODAL DE CRISTAL PELUDO --- */
+.glass-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(50px) saturate(120%);
+    -webkit-backdrop-filter: blur(50px) saturate(120%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--accent);
+    border-radius: 40px;
+    padding: 50px;
+    width: 550px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card h2 { color: white; font-weight: 100; letter-spacing: 12px; text-transform: uppercase; margin: 0; }
+
+#fuel-tank {
+    width: 100%; height: 280px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--accent);
+    border-radius: 25px; padding: 25px;
+    color: white; font-family: 'Segoe UI Light', sans-serif;
+    font-size: 15px; line-height: 1.8;
+    outline: none; resize: none; box-sizing: border-box;
+}
+
+.action-group { margin-top: 30px; display: flex; gap: 20px; justify-content: center; }
+
+.btn-glass {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 12px 35px; border-radius: 50px;
+    font-weight: 300; letter-spacing: 3px; cursor: pointer;
+    transition: 0.4s; text-transform: uppercase; font-size: 10px;
+}
+
+.btn-glass:hover { background: white; color: black; }
+.btn-cancel { opacity: 0.4; border: none; }
+
+/* --- DOCK SELLADO AL VACÍO (VERSIÓN 3.0) --- */
+.glass-dock {
+    position: fixed;
+    bottom: 0; 
+    left: 50%;
+    transform: translateX(-50%) translateY(100%); 
+    display: flex;
+    gap: 15px;
+    padding: 20px 35px 30px 35px; 
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px 30px 0 0;
+    border: 2px solid var(--accent); 
+    border-bottom: none;
+    z-index: 40000; /* 🚀 Ajustado: Igual que la top-bar para estar siempre al frente */
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- SENSOR DE SUELO PROTEGIDO (GEOCERCA) --- */
+.glass-dock::before {
+    content: "";
+    position: absolute;
+    top: -80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 850px; 
+    height: 120px; 
+    background: transparent !important;
+    border: none !important;
+    pointer-events: auto;
+}
+
+.glass-dock:hover {
+    transform: translateX(-50%) translateY(-10px); 
+    border-color: var(--accent);
+    box-shadow: 0 -15px 40px rgba(var(--accent-rgb), 0.4);
+}
+
+.btn-peludo-float {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(15px);
+    transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.btn-peludo-float:hover { 
+    transform: scale(1.1) translateY(-5px); 
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Estados Específicos */
+.btn-ficha.activo {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: rgba(var(--accent-rgb), 0.2) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.4) !important;
+}
+
+.btn-load:hover { border-color: #fff !important; }
+.btn-purge:hover { border-color: #ff8c00 !important; box-shadow: 0 0 25px rgba(255, 140, 0, 0.4) !important; }
+
+/* Iconografía */
+.icon-svg { width: 22px; height: 22px; fill: none; stroke: white; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.icon-warm { stroke: #ffcc00; }
+
+/* Modal de Purga */
+.card-warm { border-color: rgba(255, 140, 0, 0.3) !important; box-shadow: 0 40px 100px rgba(60, 30, 0, 0.4) !important; }
+.btn-accept-warm:hover { background: #ff8c00 !important; color: white !important; }
+
+#libro {
+    position: relative; 
+}
+
+/* --- 🎹 ESTACIÓN MUSICAL FLOTANTE V3.0 (GLASS INTERACTIVE) --- */
+#paleta-fly {
+    position: fixed;
+    top: 100px; left: 40px; /* Posición inicial por defecto al abrirse */
+    background: rgba(14, 14, 14, 0.94) !important;
+    backdrop-filter: blur(25px) saturate(120%);
+    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px;
+    padding: 18px;
+    display: none; /* Controlado elásticamente por el botón de la Top-Bar */
+    flex-direction: column;
+    width: 230px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+    gap: 14px;
+    z-index: 99999; /* 🚀 VITAL: Que esté por encima del Libro y de Pandora */
+    box-sizing: border-box;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* La cabecera táctica que sirve de imán para el arrastre */
+#cabecera-fly {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 2px;
+    cursor: move; /* Indica visualmente que se puede arrastrar */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+    user-select: none; -webkit-user-select: none;
+}
+
+/* Botones Premium de Transportación Litúrgica */
+.btn-transporte {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffd600 !important; /* Brillo de oro musical */
+    font-size: 10px !important;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.btn-transporte:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #ffd600 !important;
+}
+
+
+.acorde-widget {
+    /* ... Conserva tus estilos de posicionamiento, padding y colores ... */
+
+    /* 🚀 CORRECCIÓN DE COLAPSO: Fuerza al bloque de texto a no segmentarse */
+    display: inline-block !important;      /* Sustituye inline-flex por inline-block */
+    white-space: nowrap !important;       /* Duplica la seguridad de no ruptura */
+    width: max-content !important;        /* Cambia width: 0 por max-content para romper el colapso */
+    height: auto !important;              /* Permite al contenedor adaptarse al texto real */
+    
+    /* 🚀 COMPENSACIÓN DE TRASLACIÓN: */
+    /* Al cambiar el width de 0 a max-content, ajustamos el translate para mantener el centro exacto */
+    transform: translate(-50%, -100%) scale(1) !important; 
+}
+
+
+.acorde-widget.activa {
+    background: var(--accent) !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.fly-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 8px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 900;
+    transition: 0.2s;
+}
+
+.fly-btn:hover { background: white; color: black; transform: translateY(-2px); }
+
+/* --- SELECTORES Y TESTIGO --- */
+#lit-sel {
+    color: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+#lit-sel.selected {
+    color: #fff !important;
+    border-color: var(--accent) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+#lit-sel option { background-color: #111 !important; color: #fff; padding: 10px !important; }
+
+#v-testigo {
+    position: absolute; top: 0; left: 0;
+    font-family: 'candara', serif;
+    font-size: 12pt; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 3px;
+    color: #fff; padding: 15px 25px;
+    border-radius: 0 0 30px 0; 
+    z-index: 0;
+    transition: background 0.5s ease;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+
+/* ============================================================
+   PANDORA & ESCENARIO - ADN UNIFICADO (V1.0 CLEAN)
+   ============================================================ */
+
+#pandora, #pandora input, #pandora select, #pandora textarea, #pandora button {
+    font-family: 'Tahoma', sans-serif !important;
+    letter-spacing: 0.5px;
+}
+
+.menu-header {
+    font-size: 10px !important;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.p-label {
+    font-size: 9px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 5px;
+}
+
+/* SELECTOR DE COLOR Y ALINEACIÓN */
+.color-dot {
+    height: 18px; border-radius: 3px; cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.3); transition: 0.2s;
+}
+
+.plus-trigger {
+    display: flex !important; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.3) !important;
+    color: white; font-size: 14px;
+}
+
+.al-btn {
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer; padding: 8px; border-radius: 6px; display: flex;
+}
+
+.al-btn.active {
+    background: var(--accent) !important;
+    border-color: white !important;
+}
+.al-btn.active svg { fill: white !important; }
+
+/* --- REINGENIERÍA MODO NOCHE --- */
+:root {
+    --transition-seda: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.modo-noche {
+    --viewport-bg: #0f0f0f; 
+    --paper: #0e0e0e;      
+    --ink: #eeeeee;       
+    --accent-opacity: 0.15;
+}
+
+html.modo-noche #viewport { background: var(--viewport-bg); }
+
+html.modo-noche .hoja {
+    background: var(--paper);
+    box-shadow: 0 0 50px rgba(0,0,0,1); 
+    border-color: rgba(var(--accent-rgb), 0.5); 
+}
+
+/* 🚀 Corregido: El Efecto para los nuevos WIDGETS de Acorde */
+html.modo-noche .acorde-widget {
+    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.8);
+    filter: brightness(1.2);
+    background: rgba(var(--accent-rgb), 0.25);
+}
+
+html.modo-noche #v-testigo {
+    background: linear-gradient(135deg, var(--accent) 0%, rgba(var(--accent-rgb), 0.2) 100%) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- RADAR DE CONTROL TOTAL V2.0 (ARQUITECTO) --- */
+
+/* 1. Estado de la Caja en Diseño */
+#libro.show-m .box-estrofa {
+    z-index: 1000 !important;
+    outline: 2px dashed var(--accent) !important;
+    background: rgba(var(--accent-rgb), 0.08);
+    overflow: visible !important;
+    transition: none; 
+}
+
+/* 2. Escudo de Cristal (Para Arrastre Total) */
+#libro.show-m .box-estrofa::before {
+    content: '';
+    position: absolute;
+    inset: 0; 
+    z-index: 1001;
+    cursor: move !important;
+}
+
+/* 3. Sensor de Esquina (Redimensión Chicle) */
+#libro.show-m .box-estrofa::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; right: -5px;
+    width: 20px; height: 20px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    border-radius: 4px;
+    z-index: 1010;
+    cursor: nwse-resize !important;
+}
+/* 4. Bloqueo de Edición en modo Radar */
+#libro.show-m .box-estrofa {
+    pointer-events: auto !important;
+    user-select: none !important; 
+}
+
+.plus-trigger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border: 1px dashed rgba(255,255,255,0.3) !important;
+    background: rgba(255,255,255,0.05) !important;
+}
+
+/* 🚀 NUEVOS MODOS DE DISEÑO (Para el Paradigma de Capas) */
+
+/* MODO: SOLO TEXTO */
+#libro.ac-txt .acorde-widget { 
+    background: transparent !important; 
+    border: none !important; 
+    color: var(--ac-clr) !important; 
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* MODO: RELLENO (Delicado) */
+#libro.ac-rel .acorde-widget { 
+    background: var(--ac-clr) !important; 
+    color: white !important; 
+    border: none !important;
+}
+
+/* MODO: BORDE (Fino) */
+#libro.ac-bor .acorde-widget { 
+    background: rgba(var(--accent-rgb), 0.05) !important; 
+    color: var(--ac-clr) !important; 
+    border: 1px solid var(--ac-clr) !important; 
+}
+
+/* BOTONES DE ESTILO EN LA PALETA */
+#paleta-fly .fly-btn-mini {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 6px 0;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+#paleta-fly .fly-btn-mini:hover {
+    background: var(--accent) !important;
+    color: #000 !important;
+    border-color: #fff !important;
+}
+
+#paleta-fly .fly-btn-mini.active {
+    background: var(--accent) !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Radar de Borrado */
+.box-estrofa.box-active {
+    outline: 2px solid #ff8c00 !important;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+}
+
+/* Etiquetas de sección (Labels) */
+.label-fly {
+    font-size: 8px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.seccion-fly {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 12px;
+}
+
+
+
+.grid-notas-base {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.grid-alteraciones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.fly-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #efefef;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-alt { background: rgba(var(--accent-rgb), 0.1); color: var(--accent); font-size: 10px; }
+.btn-special { background: rgba(255,255,255,0.15); }
+
+/* 🚀 Botones de Control Maestro en la Estación */
+.btn-edit { flex: 1; background: #1281db !important; font-size: 9px; border: none !important; }
+.btn-del { flex: 1; background: #c0392b !important; font-size: 9px; border: none !important; }
+
+.fly-btn-mini {
+    flex: 1; background: #222; border: 1px solid #333;
+    color: #666; font-size: 8px; font-weight: 900; padding: 7px 0; border-radius: 4px;
+}
+
+/* --- ACORDEÓN DE PANDORA (REFINADO) --- */
+.menu-section {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.menu-header {
+    cursor: pointer;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    transition: background 0.3s;
+}
+.menu-header:hover { background: rgba(255,255,255,0.05); }
+
+.menu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 15px;
+}
+.menu-section.open .menu-content {
+    max-height: 800px; /* 🚀 Ajustado: Suficiente para todos los controles */
+    padding: 15px;
+}
+
+/* --- SELECTOR LITÚRGICO --- */
+#lit-sel {
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(30, 30, 30, 0.9) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+#lit-sel::-webkit-scrollbar { width: 4px; }
+#lit-sel::-webkit-scrollbar-track { background: transparent; }
+#lit-sel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+#lit-sel optgroup {
+    background: #111;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px;
+}
+
+#lit-sel option { background: #1e1e1e; color: white; padding: 10px; }
+
+/* --- COMPONENTES DE BIBLIOTECA --- */
+.canto-item {
+    padding: 12px; margin-bottom: 8px; border-radius: 10px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer; transition: 0.2s;
+}
+
+.canto-item:hover { 
+    background: rgba(var(--accent-rgb), 0.12); 
+    border-color: rgba(var(--accent-rgb), 0.3); 
+    transform: translateY(-2px);
+}
+
+.canto-item strong { display: block; font-size: 14px; color: var(--accent); margin-bottom: 2px; }
+.canto-item span { font-size: 10px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
+
+.btn-purge-opt {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px; border-radius: 10px;
+    color: white; text-align: left;
+    cursor: pointer; transition: 0.2s;
+    display: flex; flex-direction: column; gap: 2px;
+}
+
+.btn-purge-opt:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.btn-purge-opt strong { font-size: 12px; color: var(--accent); }
+.btn-purge-opt span { font-size: 9px; opacity: 0.5; }
+
+.btn-danger:hover { 
+    background: rgba(231, 76, 60, 0.2) !important; 
+    border-color: #e74c3c !important; 
+    color: #ff7675 !important;
+}
+/* --- TABS DE NAVEGACIÓN LATERAL --- */
+.tabs-biblioteca {
+    display: flex; gap: 5px; margin-bottom: 20px;
+    background: rgba(255,255,255,0.05); padding: 5px; border-radius: 10px;
+}
+
+.tab-btn {
+    flex: 1; background: transparent; border: none;
+    color: white; font-size: 10px; padding: 8px;
+    cursor: pointer; border-radius: 8px; opacity: 0.5;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--accent); color: black;
+    opacity: 1; font-weight: bold;
+}
+
+/* --- CESTA / CARRITO LITÚRGICO --- */
+.item-carrito {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px; background: rgba(255,255,255,0.03);
+    border-radius: 8px; margin-bottom: 6px; font-size: 12px;
+    border-left: 2px solid var(--accent);
+}
+
+/* 🚀 Ajustado: El botón de añadir ahora brilla con el color del tiempo actual */
+.btn-add-lista.check-active {
+    background: var(--accent) !important;
+    color: black !important;
+    transform: scale(1.1);
+}
+
+.canto-item.en-canasta {
+    background: rgba(var(--accent-rgb), 0.1) !important;
+    border-right: 3px solid var(--accent);
+}
+
+.btn-add-lista {
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%; width: 28px; height: 28px;
+    cursor: pointer; font-weight: bold; color: white;
+    transition: 0.3s; display: flex; align-items: center; justify-content: center;
+}
+
+.btn-add-lista:hover {
+    transform: scale(1.1); border-color: var(--accent); color: var(--accent);
+}
+
+/* --- EL HUERTO (COLECCIONES) --- */
+.coleccion-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; margin-bottom: 10px; overflow: hidden;
+    transition: 0.3s;
+}
+
+.col-header {
+    padding: 12px 15px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: 0.3s;
+}
+
+.col-header:hover { background: rgba(var(--accent-rgb), 0.1); }
+.col-header strong { font-size: 13px; color: var(--accent); letter-spacing: 0.5px; }
+.col-header span { font-size: 10px; opacity: 0.4; font-weight: bold; }
+
+.col-detalle {
+    padding: 10px; background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- CONTENEDOR DE LISTAS GUARDADAS --- */
+#lista-colecciones {
+    max-height: 350px; overflow-y: auto;
+    padding-right: 5px; margin-top: 10px;
+}
+
+/* SCROLLBARS DE SEDA */
+#lista-colecciones::-webkit-scrollbar,
+#carrito-liturgico::-webkit-scrollbar { width: 4px; }
+
+#lista-colecciones::-webkit-scrollbar-track,
+#carrito-liturgico::-webkit-scrollbar-track { background: transparent; }
+
+#lista-colecciones::-webkit-scrollbar-thumb,
+#carrito-liturgico::-webkit-scrollbar-thumb {
+    background: rgba(var(--accent-rgb), 0.5);
+    border-radius: 10px;
+}
+/* --- GESTIÓN DE SCROLLS UNIFICADA (Seda Style) --- */
+
+/* 1. Contenedor General de Pestañas */
+.ala-content {
+    height: calc(100vh - 120px); 
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+}
+
+/* 2. Archivero de Colecciones (Firebase) */
+#lista-colecciones {
+    display: block;
+    width: 100%;
+    max-height: 350px; 
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-top: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 3. Canasta / Carrito */
+#carrito-liturgico {
+    display: block;
+    max-height: 180px; 
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+
+/* 4. Diseño Universal de Barras de Desplazamiento */
+.ala-content::-webkit-scrollbar,
+#lista-colecciones::-webkit-scrollbar,
+#carrito-liturgico::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ala-content::-webkit-scrollbar-thumb,
+#lista-colecciones::-webkit-scrollbar-thumb,
+#carrito-liturgico::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* --- CONTROL DE REDIMENSIÓN ATÓMICA --- */
+
+
+
+
+
+
+/* --- BARRA DE PROYECCIÓN FLOTANTE (ESTILO CÁPSULA) --- */
+
+#pr-container {
+    position: absolute;
+    top: -85px; 
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 50px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(25px);
+    border: 2px solid var(--accent);
+    border-radius: 100px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    z-index: 40000; /* 🚀 Sincronizado con Top Bar y Dock */
+    min-width: 650px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: visible; /* 🚀 VITAL: Para que la orejita de cierre no se corte */
+}
+
+/* 🚀 LA OREJITA DE CIERRE RÁPIDO */
+.pr-btn-close-oreja {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    width: 32px; height: 32px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ff4444;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    z-index: 40001;
+}
+
+.pr-btn-close-oreja:hover {
+    background: #ff4444; color: white;
+    transform: scale(1.1) rotate(90deg);
+}
+
+.pr-content { text-align: center; flex-grow: 1; margin: 0 30px; }
+
+#pr-paso { 
+    font-size: 14px; color: var(--accent); font-weight: 900; 
+    letter-spacing: 5px; margin-bottom: 6px;
+    text-shadow: 0 0 15px rgba(var(--accent-rgb), 0.6);
+}
+
+#pr-titulo { 
+    font-size: 25px; font-weight: 200; color: white; 
+    letter-spacing: 8px; text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.pr-btn-nav {
+    background: none; border: none; color: white; 
+    cursor: pointer; font-size: 50px; 
+    transition: 0.3s; opacity: 0.8;
+}
+
+.pr-btn-nav:hover { color: var(--accent); transform: scale(1.2); opacity: 1; }
+
+.pr-btn-close {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: white; cursor: pointer; width: 35px; height: 35px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    transition: 0.3s; margin-left: 15px;
+}
+
+.pr-btn-close:hover { background: #ff4444; border-color: #ff4444; transform: rotate(90deg); }
+
+/* --- DISEÑO DE RESULTADOS DE BIBLIOTECA --- */
+.item-semilla {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 15px; background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent); border-radius: 10px;
+    margin-bottom: 6px; transition: 0.3s;
+}
+
+.item-semilla:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--accent); }
+/* --- DISEÑO DE RESULTADOS DE BIBLIOTECA --- */
+.item-semilla {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 15px; background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent); border-radius: 10px;
+    margin-bottom: 6px; transition: 0.3s;
+}
+
+.item-semilla:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent);
+}
+
+.semilla-textos {
+    flex-grow: 1; display: flex; align-items: baseline;
+    gap: 10px; overflow: hidden;
+}
+
+.semilla-nombre {
+    font-size: 12px; font-weight: 500; color: #fff; white-space: nowrap;
+}
+
+.semilla-autor-mini {
+    font-size: 9px; color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* BOTÓN + MINI-REDONDO */
+.btn-plus-cesta {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1px solid rgba(var(--accent-rgb), 0.5);
+    background: transparent; color: var(--accent);
+    cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s; flex-shrink: 0;
+}
+
+.btn-plus-cesta:hover {
+    background: var(--accent); color: #000; transform: scale(1.1);
+}
+
+/* --- ACORDEONES DE BIBLIOTECA (HUERTOS/SEMILLAS) --- */
+.acordeon-header {
+    background: rgba(255, 255, 255, 0.03); padding: 10px 15px;
+    border-radius: 10px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 5px; transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.acordeon-header:hover {
+    background: rgba(var(--accent-rgb), 0.1); border-color: var(--accent);
+}
+
+.acordeon-header h3 {
+    color: var(--accent); font-size: 11px;
+    letter-spacing: 2px; margin: 0; text-transform: uppercase;
+}
+
+.acordeon-icon {
+    font-size: 10px; transition: transform 0.3s; opacity: 0.5;
+}
+
+.acordeon-header.active .acordeon-icon {
+    transform: rotate(180deg); opacity: 1;
+}
+
+.acordeon-content {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 5px;
+}
+
+.acordeon-content.open {
+    max-height: 800px; padding: 10px 5px 20px 5px;
+}
+
+/* --- CONTENEDOR DE COLECCIONES (HUERTO) --- */
+.coleccion-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px; margin-bottom: 8px;
+    transition: 0.3s; overflow: hidden;
+}
+
+.col-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 15px; cursor: pointer; transition: background 0.3s;
+}
+
+.col-header:hover {
+    background: rgba(var(--accent-rgb), 0.05);
+}
+/* --- CIERRE DE BIBLIOTECA Y ESTROFAS --- */
+
+.col-header:hover { background: rgba(var(--accent-rgb), 0.05); }
+
+.btn-delete-huerto {
+    background: none; border: none; color: #ff4444;
+    cursor: pointer; font-size: 14px; opacity: 0.3;
+    transition: 0.3s; padding: 5px;
+}
+
+.coleccion-item:hover .btn-delete-huerto { opacity: 1; }
+.btn-delete-huerto:hover { transform: scale(1.2); }
+
+
+
+/* Selección masiva (Verde Neón) */
+.seleccion-masiva {
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4) !important;
+    outline: 2px solid #39ff14 !important;
+}
+
+/* ============================================================
+   🧱 COMPORTAMIENTO DE SELECCIÓN Y REDIMENSIÓN DE SEDA
+   ============================================================ */
+.box-estrofa {
+    /* 1. Posicionamiento Espacial */
+    position: absolute;
+    display: block; 
+    min-width: 60px;
+    min-height: 30px;
+    width: auto;
+    height: auto;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 14px; 
+    margin: 0;
+    
+    /* 2. Estética y ADN (Conectado a Pandora) */
+    font-family: var(--l-fn);
+    font-size: var(--l-sz);
+    
+    /* 🚀 REPARACIÓN CRÍTICA: Tinta de alta visibilidad conectada al ADN de Pandora */
+    color: var(--l-clr, #000000) !important; 
+    
+    /* 3. Blindaje de Medición Litúrgica */
+    overflow: visible !important; 
+    line-height: var(--l-lh) !important; 
+    caret-color: var(--accent); 
+    background: transparent;
+    transition: background 0.3s ease, border-color 0.2s;
+    
+    cursor: move !important; 
+    outline: none;
+    user-select: text;
+    -webkit-user-select: text;
+    -webkit-user-drag: none;
+}
+
+
+.box-estrofa:hover {
+    background: rgba(var(--accent-rgb), 0.04);
+    border-radius: 8px;
+    border: 1px dashed rgba(var(--accent-rgb), 0.2);
+}
+
+/* 🚀 LOS TIRADORES CHICLE: Se activan al dar DOBLE CLIC (data-seleccionada="true") */
+.box-estrofa[data-seleccionada="true"] {
+    resize: both !important; /* Enciende la redimensión nativa del navegador */
+    overflow: auto !important; /* Requisito del navegador para mostrar el tirador */
+    border: 2px solid #ffcc00 !important; /* Brillo de seguridad LEGO amarillo */
+    cursor: nwse-resize !important; /* Puntero diagonal de redimensión */
+}
+
+/* El tirador de esquina circular estético premium */
+.box-estrofa[data-seleccionada="true"]::-webkit-resizer {
+    background-color: #ffcc00 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 50% !important;
+}
+
+/* Limpieza absoluta de ruido en etiquetas hijas para heredar el cursor */
+.box-estrofa p, 
+.box-estrofa div,
+.box-estrofa br {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: inherit !important;
+    cursor: inherit !important; /* Siguen el cursor del padre */
+}
+.box-estrofa br { display: inline; }
+
+
+/* 🚫 ELIMINAR EL FOCO AZUL NATIVO DEL NAVEGADOR */
+[contenteditable="true"], 
+[contenteditable="true"]:focus, 
+[contenteditable="true"]:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* 3. SELECCIÓN DE TEXTO DE SEDA */
+.box-estrofa::selection {
+    background: rgba(var(--accent-rgb), 0.3) !important;
+    color: inherit;
+}
+/* 🚀 MODIFICACIÓN CRÍTICA: Protege al widget de la limpieza agresiva del texto */
+.box-estrofa p:not(.acorde-widget), 
+.box-estrofa div:not(.acorde-widget),
+.box-estrofa br {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: inherit !important;
+    cursor: inherit !important; 
+}
+
+/* Distribución horizontal de los tres estados (Texto, Relleno, Borde) */
+.flex-estilos {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.flex-control { display: flex; gap: 6px; }
+
+
+/* 🚀 LIBERACIÓN DE SCROLL EN BIBLIOTECA */
+.lista-scroll {
+    display: block !important;
+    max-height: 55vh !important;       /* Usa el 55% de la altura de la pantalla del dispositivo */
+    overflow-y: auto !important;       /* Fuerza la aparición de la barra de seda vertical */
+    overflow-x: hidden !important;
+    padding-right: 4px;
+    box-sizing: border-box;
+}
+
+/* Forzamos que la persiana abierta de Cantos Encontrados sea lo bastante amplia */
+#content-resultados.acordeon-content.open {
+    max-height: max-content !important; /* Permite que el contenedor se estire según los cantos que existan */
+}
+
+/* ============================================================
+   📱 REINGENIERÍA PARA TABLETAS (GALAXY TAB S9+) Y MÓVILES
+   ============================================================ */
+@media (max-width: 1100px) {
+    :root {
+        /* Reducimos los colchones de las hojas para ganar espacio aéreo en la tablet */
+        --h1-mt: 30mm; 
+        --h2-mt: 15mm; 
+        --zoom-level: 0.85; /* Elevamos el zoom base para lectura táctil */
+    }
+
+    /* 1. EL LIBRO ELÁSTICO: Obliga a las hojas a encajar en el ancho de la tablet */
+    #libro {
+        transform: scale(var(--zoom-level)) !important;
+        transform-origin: top center !important;
+        gap: 30px !important; /* Compactamos la separación de hojas */
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+
+    .hoja {
+        /* Mantenemos la proporción carta pero permitimos que el chasis sea fluido */
+        max-width: 92vw !important; 
+        height: auto !important; /* La hoja se estira hacia abajo de forma natural */
+        min-height: 279.4mm !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6) !important;
+        padding-bottom: 20mm !important;
+    }
+
+    /* 2. EL VIEWPORT RE-CALIBRADO: Activamos el deslizamiento suave con el dedo */
+    #viewport {
+        padding: 20px 0 !important;
+        -webkit-overflow-scrolling: touch; /* Suavidad tipo Apple/Android en el scroll */
+    }
+
+    /* 3. PERSIANA INVISIBLE DE PANELES (Para que no estorben la lectura en la Tab) */
+    #pandora { left: -340px !important; }
+    #biblioteca { right: -340px !important; }
+    #toggle-p { left: 0px !important; }
+    
+    /* Reajuste del puente de mando superior para pantallas compactas */
+    #top-bar {
+        width: 98% !important;
+        height: 65px !important;
+        padding: 0 15px !important;
+    }
+    
+    .btn-peludo-top {
+        width: 38px !important;
+        height: 38px !important;
+    }
+    
+    .icon-top {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* ============================================================
+   🔥 RECONFIGURACIÓN EXTREMA PARA TELÉFONOS INTELIGENTES
+   ============================================================ */
+@media (max-width: 600px) {
+    :root {
+        --zoom-level: 0.55; /* En teléfonos compactamos más el lienzo global */
+        --h1-mt: 20mm;
+    }
+    
+    #top-bar {
+        border-radius: 0 0 15px 15px !important;
+    }
+    
+    /* Escondemos el indicador de zoom escrito en el cel para ahorrar espacio */
+    #zoom-txt { display: none !important; }
+    
+    /* Forzamos a que las cajas de estrofas no se salgan del borde del teléfono */
+    .box-estrofa {
+        max-width: 90% !important;
+        min-width: 280px !important;
+    }
+}
+/* ============================================================
+   📱 USABILIDAD SEDA TÁCTIL: GALAXY TAB Y MÓVILES
+   ============================================================ */
+@media (max-width: 1100px) {
+    /* 1. Escondemos los tiradores nativos de texto en modo móvil para máxima limpieza */
+    #toggle-p, #toggle-b { 
+        display: none !important; 
+    }
+
+    /* 2. Forzamos a que el lienzo ocupe el 100% de la pantalla sin estorbos */
+    #viewport {
+        position: relative !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding: 10px 0 !important;
+        z-index: 5 !important;
+    }
+
+    /* 3. Elevación de las capas de control táctil sobre el lienzo */
+    #pandora, #biblioteca {
+        height: 100vh !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        box-shadow: 0 0 40px rgba(0,0,0,0.8) !important;
+        z-index: 60000 !important; /* Por encima de la Top Bar para uso manual */
+    }
+}
+

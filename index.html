@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEQUEÑO SEMBRADOR - V2.0</title>
+    <!-- [PIEL] Diseño base del chasis -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- [MÚSICA] Diseño específico de los widgets de acordes -->
+    <link rel="stylesheet" href="acordes-style.css">
+    <!-- 🚀 META-ETIQUETAS PREMIUM PARA EMPAQUETADO MÓVIL/TABLET (PWA) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#050505">
+
+</head>
+<body>
+
+<!-- [PUENTE DE MANDO RECONSTRUIDO V2.0] Fijo, Escondible y unificado -->
+<header id="top-bar" class="top-bar-visible">
+    
+    <!-- 🌐 GRUPO 1: VISUALIZACIÓN (Cian Eléctrico) -->
+    <div class="cmd-group">
+        <button class="btn-peludo-top btn-view" onclick="aZ(-0.1)" title="Zoom Out">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M15 12H9"/><circle cx="12" cy="12" r="9" opacity="0.15"/></svg>
+        </button>
+        <span id="zoom-txt">65%</span>
+        <button class="btn-peludo-top btn-view" onclick="aZ(0.1)" title="Zoom In">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M12 9v6m3-3H9"/><circle cx="12" cy="12" r="9" opacity="0.15"/></svg>
+        </button>
+        <button class="btn-peludo-top btn-hoja" onclick="tglHoja2()" title="Alternar Hoja 2">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7" opacity="0.25"/></svg>
+        </button>
+    </div>
+
+    <div class="cmd-sep"></div>
+
+    <!-- ☁️ GRUPO 2: ADMINISTRACIÓN Y NUBE (Verde Esmeralda) -->
+     <!-- GRUPO 2: ARCHIVO Y NUBE (Tonalidades Verde Esmeralda) -->
+    <div class="cmd-group">
+        <!-- 1. El Tanque de Carga ADN -->
+        <button class="btn-peludo-top btn-load" onclick="tglADN(true)" title="Cargar ADN Masivo (Tanque)">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="9" opacity="0.15"/></svg>
+        </button>
+        
+        <!-- 🚀 2. NUEVO: EL CREADOR ATÓMICO (Añadir Estrofa Suelta) -->
+        <button class="btn-peludo-top btn-add-box" onclick="crearCajaEstrofa()" title="Añadir Estrofa Suelta (+)">
+            <span style="font-size: 24px; color: inherit; font-weight: 300; line-height: 0; display: block; margin-top: -2px;">+</span>
+        </button>
+        
+        <!-- 3. El Guardado en la Nube -->
+        <button class="btn-peludo-top btn-save" onclick="guardarCantoOficial()" title="Guardar Canto Oficial">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><circle cx="12" cy="13" r="3" opacity="0.15"/></svg>
+        </button>
+    </div>
+
+    <div class="cmd-sep"></div>
+
+    <!-- GRUPO 3: MÚSICA Y TRANSMIGRACIÓN (Tonalidades Oro y Sol) -->
+    <div class="cmd-group">
+        <!-- Interruptor de la Paleta (Solo para ti) -->
+        <button class="btn-peludo-top btn-music" onclick="toggleEstacionMusical()" title="Paleta de Acordes Fly">
+            <svg viewBox="0 0 24 24" class="icon-top"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 15v4m4-4v4m4-4v4m4-4v4" opacity="0.35"/></svg>
+        </button>
+
+        <!-- 🚀 BOTONES EXCLUSIVOS PARA EL USUARIO COMUNIDAD (Bajar / Subir Semitono) -->
+        <button class="btn-peludo-top btn-user-transporte btn-user-down" onclick="transportarTodo(-1)" title="Bajar Tono ♭">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M7 10l5 5 5-5"/><path d="M7 10h10" opacity="0.15"/></svg>
+        </button>
+        <button class="btn-peludo-top btn-user-transporte btn-user-up" onclick="transportarTodo(1)" title="Subir Tono ♯">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M17 14l-5-5-5 5"/><path d="M7 14h10" opacity="0.15"/></svg>
+        </button>
+    </div>
+
+    <div class="cmd-sep"></div>
+
+    <!-- 🔥 GRUPO 4: ACCIONES DEL LIENZO (Fuego Carmesí e Índigo) -->
+    <div class="cmd-group">
+        <button class="btn-peludo-top btn-ficha" onclick="tglMajestuoso(true)" title="Consulta Ficha Litúrgica">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M12 8v4m0 4h.01" opacity="0.35"/></svg>
+        </button>
+        <button class="btn-peludo-top btn-luna" onclick="tD()" title="Modo Nocturno OLED">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button class="btn-peludo-top btn-purge" onclick="ejecutarLimpiezaEscenario(true)" title="Limpiar Escenario Local">
+            <svg viewBox="0 0 24 24" class="icon-top"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6"/><path d="M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3" opacity="0.25"/></svg>
+        </button>
+    </div>
+
+    <!-- 👤 PERFIL ESTILO GOOGLE APPS -->
+    <div id="user-profile-dock" style="display: flex; align-items: center; position: relative; margin-left: auto;">
+        <div id="user-avatar-btn" onclick="tglDropdownUsuario()" style="width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.15); background:#222; background-size:cover; background-position:center; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:bold; color:white; text-transform:uppercase;">?</div>
+        <div id="user-dropdown-card" style="display:none; position:absolute; top:50px; right:0; background:rgba(15,15,15,0.98); border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(25px); border-radius:12px; padding:15px; width:200px; box-shadow:0 15px 40px rgba(0,0,0,0.8); flex-direction:column; gap:8px; z-index:51000; box-sizing:border-box;">
+            <div id="user-display-name" style="font-size:12px; font-weight:600; color:white; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Cargando...</div>
+            <div id="user-display-role" style="font-size:9px; color:var(--accent); font-weight:900; letter-spacing:1.5px; text-transform:uppercase;">Modo Usuario</div>
+            <div style="width:100%; height:1px; background:rgba(255,255,255,0.08); margin:4px 0;"></div>
+            <button class="btn-glass" onclick="ejecutarCerrarSesion()" style="padding:8px; font-size:9px; border-color:#ef5350; color:#ef5350; width:100%; background:transparent; border-radius:20px; cursor:pointer; text-transform:uppercase; font-weight:bold;">Cerrar Sesión ✕</button>
+        </div>
+    </div>
+
+    <!-- 🎯 EL GATILLO INVISIBLE DE LA PERSIANA -->
+    <div id="gatillo-top-bar" onclick="tglOcultarTopBar()" title="Alternar Barra Superior">▲</div>
+</header>
+
+    
+
+
+    <div id="main-container">
+        <!-- [SELECTOR] Botón que abre/cierra el panel -->
+        <div id="toggle-p" onclick="togglePandora()" style="left: 0px;">❯</div>
+        
+        <!-- [PANDORA] El cerebro de ajustes izquierdo -->
+        <!-- [PANDORA] El cerebro de ajustes izquierdo -->
+        <aside id="pandora" style="left: -340px;">
+            <!-- BLOQUE: IDENTIDAD REESTRUCTURADO -->
+            <div class="menu-section">
+                <div class="menu-header">Ficha del Canto</div>
+                <div class="menu-content">
+                    <!-- Título y Autor (Siguen igual) -->
+                    <input type="text" placeholder="TÍTULO" oninput="sID('v-titulo',this.value)">
+                    <input type="text" placeholder="AUTOR" oninput="sID('v-autor',this.value)">
+                    
+                    <!-- Momento Litúrgico -->
+                    <select id="lit-sel" onchange="uLit(this)">
+                        <option value="" disabled selected>Momento Litúrgico</option>
+                        <optgroup label="TIEMPO ORDINARIO">
+                            <option value="Entrada" data-color="#27ae60">Entrada</option>
+                            <option value="Piedad" data-color="#27ae60">Piedad</option>
+                            <option value="Gloria" data-color="#27ae60">Gloria</option>
+                            <option value="Aleluya" data-color="#27ae60">Aleluya</option>
+                            <option value="Ofertorio" data-color="#27ae60">Ofertorio</option>
+                            <option value="Santo" data-color="#27ae60">Santo</option>
+                            <option value="Cordero" data-color="#27ae60">Cordero</option>
+                            <option value="Comunión" data-color="#27ae60">Comunión</option>
+                            <option value="Salida" data-color="#27ae60">Salida</option>
+                        </optgroup>
+                        <optgroup label="TIEMPOS LITÚRGICOS">
+                            <option value="Cuaresma" data-color="#8e44ad">Cuaresma </option>
+                            <option value="Pascua" data-color="#f1c40f">Pascua</option>
+                            <option value="Adviento" data-color="#8e44ad">Adviento</option>
+                            <option value="Navidad" data-color="#f1c40f">Navidad</option>                         
+                        </optgroup>
+                         <optgroup label="DIVERSOS">
+                        <option value="Pentecostés" data-color="#ff0000">Pentecostés</option>
+                           <option value="María" data-color="#1883ff">María</option>
+                         </optgroup>   
+
+                    </select>
+
+                    <!-- NUEVO CAMPO 1: FICHA LITÚRGICA MAJESTUOSA (Ventana Peluda) -->
+                    <span class="p-label" style="margin-top:10px"></span>
+                    <textarea id="in-ficha-l" placeholder="Ficha Litúrgica" oninput="checkADN()"></textarea>
+
+                    <!-- NUEVO CAMPO 2: INDICACIÓN RÁPIDA (Paleta Flotante) -->
+                    <span class="p-label"></span>
+                    <input type="text" id="in-comentario" placeholder="Comentarios / Indicaciones" oninput="checkADN()">
+                </div>
+            </div>
+
+            <!-- BLOQUE: LABORATORIO (V258) -->
+            <div class="menu-section">
+                <div class="menu-header">Laboratorio de Estilo</div>
+                <div class="menu-content">
+                    <select id="obj-sel" onchange="syncLab()">
+                        <option value="l">Letra de Estrofas</option>
+                        <option value="t">Título del Canto</option>
+                        <option value="a">Nombre del Autor</option>
+                        <option value="ac">Acordes Musicales</option>
+                    </select>
+                    
+                    <span class="p-label">Tipografía</span>
+                    <select id="f-sel" onchange="appS('fn',this.value)">
+                        <optgroup label="SERIF">
+                            <option value="'Tahoma'">Tahoma</option>
+                            <option value="'Fray Gabriel'">Fray Gabriel</option>
+                            <option value="'Cinzel'">Cinzel</option>
+                        </optgroup>
+                        <optgroup label="SANS">
+                            <option value="'Montserrat'">Montserrat</option>
+                            <option value="'Roboto'">Roboto</option>
+                        </optgroup>
+                        <optgroup label="MONO">
+                            <option value="'Courier New'">Courier New</option>
+                            <option value="'Consolas'">Consolas</option>
+                        </optgroup>
+                    </select>
+
+                    <span class="p-label">Tamaño Fuente</span>
+                    <div class="slider-container">
+                        <input type="range" id="s-range" min="6" max="90" value="11" oninput="appS('sz',this.value+'pt'); document.getElementById('sz-badge').innerText=this.value+'pt'">
+                        <div class="sz-badge" id="sz-badge">24pt</div>
+                    </div>
+
+                   
+               <!-- EL ESPECTRO DE COLOR(Este es el que flotará hacia arriba) -->
+                    <span class="p-label">Color</span>
+                        <div style="position: relative;"> 
+                            <div class="color-grid" id="color-pal"></div>
+                            
+                            <!-- El selector real del sistema, invisible pero posicionado arriba -->
+                            <input type="color" id="hex-picker" oninput="appS('clr', this.value)" 
+                                style="position: absolute; bottom: 100%; left: 50%; opacity: 0; width: 1px; height: 1px; pointer-events: auto;">
+                        </div>         
+                     <span class="p-label">Alineación</span>
+                    <div class="align-group">
+                        <button class="al-btn" onclick="appS('al','left')" title="Izquierda">
+                            <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h10v-2H3v2zm0-5h18V6H3v2z"/></svg>
+                        </button>
+                        <button class="al-btn" onclick="appS('al','center')" title="Centro">
+                            <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm4-5h10v-2H7v2zm-4-5h18V6H3v2z"/></svg>
+                        </button>
+                        <button class="al-btn" onclick="appS('al','right')" title="Derecha">
+                            <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm8-5h10v-2H11v2zm-8-5h18V6H3v2z"/></svg>
+                        </button>
+                        <button class="al-btn" onclick="appS('al','optimize')" title="Justificado">
+                            <svg viewBox="0 0 24 24"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-5v2h18V4H3z"/></svg>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+                      <!-- SECCIÓN GESTIÓN DE GRUPOS (Versión Final Blindada) -->
+                    <div class="acordeon-item">
+                        <div class="acordeon-header" onclick="toggleAcordeon(this, 'content-grupos')">
+                            <h3>MAQUETACIÓN DE GRUPO</h3>
+                            <span class="acordeon-icon">▼</span>
+                                </div>
+                                <div id="content-grupos" class="acordeon-content">
+                                    <div style="padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                                        
+                                        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;">
+                                            <!-- 1. El Rey de la Alineación -->
+                                            <button onclick="alinearGrupo('izquierda')" class="btn-glass" title="Alinear a la Izquierda" style="font-weight: bold;">|←</button>
+                                            
+                                            <!-- 2. El Rey de la Distribución -->
+                                            <button onclick="distribuirGrupo('vertical')" class="btn-glass" title="Separar Verticalmente">↕</button>
+                                            
+                                            <!-- 3. El Botón de Soltar (✕) -->
+                                            <button onclick="soltarGrupo()" class="btn-glass" title="Soltar Selección" style="color:#ff4444;">✕</button>
+                                        </div>
+
+                                        <p id="info-grupo" style="font-size:9px; opacity:0.5; margin-top:12px; text-align:center; letter-spacing: 1px; text-transform: uppercase;">
+                                            0 Cajas en grupo
+                                        </p>
+                                    </div>
+                                </div>
+                    </div>
+
+        </aside>
+
+
+
+        <!-- [ESCENARIO] Campo de siembra -->
+<main id="viewport">
+
+                <!-- 3. EL LIBRO (Escenario de hojas) -->
+                <div id="libro">
+                  
+                    <!-- HOJA 1 -->
+                    <article class="hoja" id="hoja1">
+                        <div id="v-testigo" style="background:#ffffff; display:none;">...</div>
+                        
+                        <header class="corona" style="position: relative; text-align: center;">
+    
+    <!-- 🚀 CONSOLA DE PROYECCIÓN (Seda 4.0) -->
+    <div id="pr-container">
+    <!-- Navegación Izquierda -->
+    <button onclick="navegarProyeccion(-1)" class="pr-btn-nav">❮</button>
+    
+    <!-- Info Central -->
+    <div class="pr-content">
+        <div id="pr-titulo">TÍTULO DEL CANTO</div>
+        
+        <div id="pr-paso">CANTO 1 DE 12</div>
+        
+    </div>
+    
+    <!-- Navegación Derecha -->
+    <button onclick="navegarProyeccion(1)" class="pr-btn-nav">❯</button>
+
+    <!-- 🚀 LA OREJITA DE CIERRE (Fuera del peligro) -->
+    <button onclick="cerrarProyeccion()" class="pr-btn-close-oreja" title="Cerrar Proyección">✕</button>
+</div>
+    <!-- TÍTULO REAL DE LA HOJA -->
+    <h1 id="v-titulo">TÍTULO DEL CANTO</h1>
+    <div class="sep-seda-bold"></div>
+    <p id="v-autor">Autor del Canto</p>
+</header>
+                    </article>
+
+                        <!-- HOJA 2 -->
+                    <article class="hoja" id="hoja2" style="display:none;">
+                        
+                    </article>
+
+                    
+             
+            </main>
+    </div>
+                <!-- [BIBLIOTECA] Panel Derecho con ID original -->
+<aside id="biblioteca" style="right: -340px;">
+    <div id="toggle-b" onclick="toggleBiblioteca()">❮</div>
+    
+    <!-- PESTAÑAS (Control de Navegación) -->
+    <div class="tabs-biblioteca">
+        <button class="tab-btn active" onclick="cambiarAla('semillas')">SEMILLAS</button>
+        <button class="tab-btn" onclick="cambiarAla('huertos')">HUERTOS</button>
+    </div>
+
+    <!-- 🟢 ALA 1: SEMILLAS (Todo el contenido de acordeones va AQUÍ adentro) -->
+    <div id="ala-semillas" class="ala-content">
+
+        <!-- SECCIÓN 1: CESTA -->
+        <div class="acordeon-item">
+            <div class="acordeon-header" onclick="toggleAcordeon(this, 'content-cesta')">
+                <h3>CESTA DE CANTOS</h3>
+                <span class="acordeon-icon">▼</span>
+            </div>
+            <div id="content-cesta" class="acordeon-content">
+                <div class="cesta-siembra-container" style="padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                    <input type="text" id="nombre-esquema" placeholder="Titulo de la lista" 
+                        style="width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--accent); color: white; padding: 8px 0; margin-bottom: 15px; outline: none; font-size: 14px;">
+                    <div id="carrito-liturgico"></div>
+                    <button onclick="guardarEsquemaNube()" class="btn-glass" style="width:100%;">GUARDAR LISTA ☁️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: BÚSQUEDA -->
+        <div class="acordeon-item">
+            <div class="acordeon-header" onclick="toggleAcordeon(this, 'content-busqueda')">
+                <h3>BÚSQUEDA</h3>
+                <span class="acordeon-icon">▼</span>
+            </div>
+            <div id="content-busqueda" class="acordeon-content">
+                <div class="search-box" style="padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div id="contenedor-filtros"></div>
+                    <div style="display:flex; gap:10px; margin-top:15px;">
+                        <button id="btn-add-filtro" class="btn-glass" onclick="agregarFilaFiltro()"title="Agregar Criterio de Búsqueda">+</button>
+                        <!-- 🚀 NUEVO: Botón de Reseteo de campos -->
+                        <button class="btn-glass" onclick="limpiarCamposBusqueda()" title="Limpiar Búsqueda">↺</button>
+                        <button class="btn-glass" style="flex-grow:1; background:var(--accent); color:black;" onclick="ejecutarBusquedaMaestra()"title="Ejecutar Búsqueda">🔍 </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: CANTOS ENCONTRADOS -->
+        <div class="acordeon-item">
+            <div class="acordeon-header" onclick="toggleAcordeon(this, 'content-resultados')">
+                <h3>CANTOS ENCONTRADOS</h3>
+                <span class="acordeon-icon">▼</span>
+            </div>
+            <div id="content-resultados" class="acordeon-content">
+                <div class="resultadoss-container" style="padding: 15px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                    <button class="btn-glass" style="width: 100%; margin-bottom: 15px; border-color: var(--accent); color: var(--accent); font-weight: bold;" onclick="cargarTodaLaBiblioteca()">📦 TODA LA BIBLIOTECA (A-Z)</button>
+                    <div id="lista-cantos" class="lista-scroll" style="max-height: 400px; overflow-y: auto;">
+                        <p style="opacity: 0.2; text-align: center; font-size: 11px; padding: 20px;">Usa el buscador o despliega la biblioteca completa...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- FIN ALA SEMILLAS -->
+
+   <!-- ALA 2: HUERTOS (El Archivero de Misas) -->
+<div id="ala-huertos" class="ala-content" style="display:none; padding: 0 10px;">
+    
+    <h3 style="color:var(--accent); font-size:11px; margin-bottom:15px; letter-spacing: 2px;">MISAS GUARDADAS 📂</h3>
+
+    <!-- Buscador de Carpetas -->
+    <div class="buscador-carpetas" style="margin-bottom: 20px;">
+        <input type="text" id="input-buscar-huerto" placeholder="Buscar misa por nombre..." 
+               style="width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; padding: 10px 15px; font-size: 13px; outline: none;"
+               onkeyup="filtrarHuertos()">
+    </div>
+
+    <!-- Contenedor donde Firebase inyectará las carpetas -->
+    <div id="lista-colecciones" class="lista-scroll" style="max-height: 70vh; overflow-y: auto;">
+        <!-- Aquí caerán las carpetas con su botón de borrar -->
+    </div>
+</div>
+
+</aside>
+
+            <!-- 1. VENTANAS MODALES (Van sueltas, fuera de los botones) -->
+
+            <div id="modal-adn" class="glass-overlay">
+                <div class="glass-card">
+                    <h2>Tanque de Carga</h2>
+                    <div class="sep-seda-bold"></div>
+                    <!-- Instrucción para el "Big Bang" de cajas -->
+                    <p class="p-label" style="margin-bottom: 15px;">Pega tu canto aquí (Deja un espacio libre entre cada estrofa)</p>
+                    
+                    <!-- Textarea Nativo: Rápido y sin conflictos de editor -->
+                    <textarea id="fuel-tank" placeholder="Pega o escribe la letra completa..."></textarea>
+
+                    <div class="action-group">
+                        <button class="btn-glass btn-cancel" onclick="tglADN(false)">Cancelar</button>
+                        <!-- Este botón ahora disparará la fragmentación en cajas independientes -->
+                        <button class="btn-glass" onclick="inyectarADN()">Inyectar en Cajas</button>
+                    </div>
+                </div>
+            </div>
+
+<!-- 🎹 PALETA FLOTANTE MUSICAL (EDICIÓN SEDA 3.0 CON TRANSPOSICIÓN INTEGRADA) -->
+<!-- Nace conmutada por el botón de la barra superior y lista para arrastrarse desde su cabecera -->
+<div id="paleta-fly">
+
+    <!-- CABECERA DE ARRASTRE TÁCTICA -->
+    <div id="cabecera-fly" title="Arrastra la paleta desde aquí">🎹 ESTACIÓN MUSICAL</div>
+
+    <!-- ZONA 1: DISEÑO DE ACORDE -->
+    <div class="seccion-fly">
+        <label class="label-fly">DISEÑO DE ACORDE</label>
+        <div class="flex-estilos" onmousedown="event.preventDefault()" ontouchstart="event.preventDefault()">
+            <button class="fly-btn-mini" onclick="cambiarEstiloAcorde('txt')">TEXTO</button>
+            <button class="fly-btn-mini" onclick="cambiarEstiloAcorde('rel')">RELLENO</button>
+            <button class="fly-btn-mini" onclick="cambiarEstiloAcorde('bor')">BORDE</button>
+        </div>
+    </div>
+
+    <!-- ZONA 2: NOTAS BASE (Las Raíces) -->
+    <div class="seccion-fly">
+        <label class="label-fly">NOTAS BASE</label>
+        <div class="grid-notas-base" onmousedown="event.preventDefault()" ontouchstart="event.preventDefault()">
+            <button class="fly-btn" onclick="addNoteChar('C')">C</button>
+            <button class="fly-btn" onclick="addNoteChar('D')">D</button>
+            <button class="fly-btn" onclick="addNoteChar('E')">E</button>
+            <button class="fly-btn" onclick="addNoteChar('F')">F</button>
+            <button class="fly-btn" onclick="addNoteChar('G')">G</button>
+            <button class="fly-btn" onclick="addNoteChar('A')">A</button>
+            <button class="fly-btn" onclick="addNoteChar('B')">B</button>
+            <button class="fly-btn btn-special" onclick="addNoteChar('/')">/</button>
+        </div>
+    </div>
+
+    <!-- ZONA 3: ALTERACIONES (La Naturaleza) -->
+    <div class="seccion-fly">
+        <label class="label-fly">NATURALEZA</label>
+        <div class="grid-alteraciones" onmousedown="event.preventDefault()" ontouchstart="event.preventDefault()">
+            <button class="fly-btn btn-alt" onclick="addNoteChar('m')">m</button>
+            <button class="fly-btn btn-alt" onclick="addNoteChar('#')">#</button>
+            <button class="fly-btn btn-alt" onclick="addNoteChar('b')">b</button>
+            <button class="fly-btn btn-alt" onclick="addNoteChar('7')">7</button>
+            <button class="fly-btn btn-alt" onclick="addNoteChar('aug')">aug</button>
+            <button class="fly-btn btn-alt" onclick="addNoteChar('dim')">dim</button>
+        </div>
+    </div>
+
+    <!-- 🚀 ZONA 4: NUEVA - TRANSPOSICIÓN INTEGRADA (El Alma Cromática) -->
+    <div class="seccion-fly">
+        <label class="label-fly">TRANSPOSICIÓN DE TONO</label>
+        <div class="flex-control">
+            <button class="fly-btn btn-transporte" onclick="transportarTodo(-1)" title="Bajar un semitono">Bajar Tono ♭</button>
+            <button class="fly-btn btn-transporte" onclick="transportarTodo(1)" title="Subir un semitono">Subir Tono ♯</button>
+        </div>
+    </div>
+
+    <!-- ZONA 5: CONTROL DE LIMPIEZA -->
+    <div class="seccion-fly" style="border:none; padding:0;">
+        <div class="flex-control">
+            <button class="fly-btn btn-del" onclick="eliminarAcordeActivo()">ELIMINAR</button>
+            <button class="fly-btn btn-edit" onclick="editarAcordeActivo()">EDITAR</button>
+        </div>
+    </div>
+
+</div>
+
+
+    
+
+        <!-- MARIPOSA DE COMENTARIOS (EDICIÓN SEDA 2.0) -->
+<div id="st-com" onmousedown="sSD_C(event)" style="position:fixed; top:300px; left:400px; z-index:50000; display:none; gap:10px; pointer-events:none;">
+    <!-- El Pin móvil -->
+    <div id="mosca-com" onclick="tPS_C()" style="width:45px; height:45px; background:var(--accent); border-radius:50%; border:2px solid white; color:white; cursor:move; display:flex; align-items:center; justify-content:center; font-size:20px; pointer-events:auto; box-shadow:0 10px 25px rgba(0,0,0,0.5);">💬</div>
+    
+    <!-- El cuerpo del mensaje (Glass) -->
+    <div id="pal-com" style="background:rgba(20,20,20,0.95); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:15px; display:none; width:190px; pointer-events:auto; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+        <div id="txt-com" style="color:white; font-size:13px; text-align:center; font-style:italic; line-height:1.4;">
+            <!-- Aquí caerá el texto de Pandora -->
+        </div>
+    </div>
+</div>
+
+        <!-- VENTANA PELUDA MAJESTUOSA -->
+
+            <div id="modal-majestuoso" class="glass-overlay">
+                <div class="glass-card">
+                    <h2>Ficha Litúrgica</h2>
+                    <div id="txt-majestuoso" style="color:rgb(255, 255, 255); margin:30px 0; font-style:italic; line-height:1.6"></div>
+                    <button class="btn-glass" onclick="tglMajestuoso(false)">Cerrar</button>
+                </div>
+            </div>
+
+<!-- PUENTE DE COMUNICACIÓN FIREBASE V12 (AUTH, ROLES Y SINCRONIZACIÓN OFFLINE) -->
+               <script type="module">
+                    // 1. IMPORTACIONES COMPLETAS (Fíjate que agregamos getDoc, collection y getDocs)
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+                    import { getFirestore, doc, setDoc, getDoc, collection, getDocs, deleteDoc  } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+        // 🔑 IMPORTACIÓN DEL MOTOR DE AUTENTICACIÓN
+                    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyC4qV0UE-gQY-Di2iVFAcY4LtJY-gw9EmE",
+                        authDomain: "firebaseapp.com",
+                        projectId: "peque-sembrador",
+                        storageBucket: "peque-sembrador.firebasestorage.app",
+                        messagingSenderId: "292658831715",
+                        appId: "1:292658831715:web:04033ba07d22b9398a3356"
+                    };
+
+                    let auth, db;
+
+                    // 🚀 BUSCA ESTO EN TU <script type="module"> DENTRO DE TU HTML:
+                        try {
+                            const app = initializeApp(firebaseConfig);
+                            db = getFirestore(app);
+                            auth = getAuth(app);
+                            
+                            // 👑 REPARACIÓN MAESTRA: Añade deleteDoc al final de esta lista para que script.js lo pueda usar
+                            window.fb = { db, doc, setDoc, getDoc, collection, getDocs, auth, deleteDoc };
+                            
+                            console.log("🛰️ PUENTE FIREBASE V12: Motores de Autenticación y Nube encendidos.");
+                        } catch (e) {
+                            console.error("🚨 Error crítico al conectar Firebase:", e);
+                        }
+
+                    // --- 🔑 PARTE 1: LOGICA DE ACCESO (GOOGLE Y CORREO) ---
+
+                    // Alternar visualmente entre Modo Ingreso y Modo Registro
+                    let modoRegistro = false;
+                    window.conmutarModoAuth = () => {
+                        modoRegistro = !modoRegistro;
+                        const btnText = document.querySelector('#auth-forms-container button');
+                        const labelToggle = document.getElementById('toggle-auth-mode');
+                        
+                        if (modoRegistro) {
+                            if(btnText) btnText.innerHTML = "Crear Cuenta Nueva 🌱";
+                            if(labelToggle) labelToggle.innerHTML = "¿Ya tienes cuenta? Ingresa aquí";
+                        } else {
+                            if(btnText) btnText.innerHTML = "Entrar al escenario 🔑";
+                            if(labelToggle) labelToggle.innerHTML = "¿Eres nuevo? Regístrate aquí";
+                        }
+                    };
+
+                    // Acceso / Registro con Correo electrónico nativo
+                    window.ejecutarAccesoCorreo = async () => {
+                        const email = document.getElementById('auth-email').value.trim();
+                        const pass = document.getElementById('auth-pass').value.trim();
+
+                        if (!email || !pass) return alert("⚠️ Completa los campos.");
+
+                        try {
+                            if (modoRegistro) {
+                                // Registro de usuario nuevo de forma automática
+                                const cred = await createUserWithEmailAndPassword(auth, email, pass);
+                                await sembrarFichaUsuarioFirestore(cred.user);
+                                alert("🌱 Cuenta litúrgica creada con éxito.");
+                            } else {
+                                // Login estándar
+                                await signInWithEmailAndPassword(auth, email, pass);
+                            }
+                        } catch (err) {
+                            console.error(err);
+                            alert("❌ Error de credenciales: " + err.message);
+                        }
+                    };
+
+                    // Acceso / Registro instantáneo con Google Auth
+                    window.ejecutarAccessoGoogle = async () => {
+                        const provider = new GoogleAuthProvider();
+                        try {
+                            const cred = await signInWithPopup(auth, provider);
+                            await sembrarFichaUsuarioFirestore(cred.user);
+                        } catch (err) {
+                            console.error(err);
+                            alert("❌ Error al autenticar con Google.");
+                        }
+                    };
+
+                    // Crear la ficha de perfil en Firestore si el usuario es nuevo
+                    async function sembrarFichaUsuarioFirestore(user) {
+                        const userRef = doc(db, "usuarios", user.uid);
+                        const snap = await getDoc(userRef);
+                        
+                        // Si no existe el documento, lo creamos asignándole el rol base de comunidad
+                        if (!snap.exists()) {
+                            await setDoc(userRef, {
+                                uid: user.uid,
+                                correo: user.email,
+                                nombre: user.displayName || user.email.split('@')[0],
+                                foto: user.photoURL || "",
+                                rol: "comunidad" // 👑 Nota: Entra a tu consola Firestore y cambia este valor a "admin" en tu cuenta.
+                            });
+                        }
+                    }
+
+                    // --- 🛡️ PARTE 2: ESCANER DE ESTADO DE SESIÓN (onAuthStateChanged) ---
+                    onAuthStateChanged(auth, async (user) => {
+                        const modalLogin = document.getElementById('modal-login');
+                        
+                        if (user) {
+                            console.log("👤 Usuario detectado con éxito:", user.email);
+                            
+                            // Extracción de la ficha de rol de Firestore
+                            const userRef = doc(db, "usuarios", user.uid);
+                            let datosUsuario = { rol: "comunidad", nombre: user.email.split('@')[0], foto: "" };
+                            
+                            try {
+                                const snap = await getDoc(userRef);
+                                if (snap.exists()) datosUsuario = snap.data();
+                            } catch(e) { console.warn("Modo offline o falta de documento de rol."); }
+
+                     
+                        window.esSembradorMaestro = (datosUsuario.rol === 'admin');
+                        
+                        // 🚀 INYECCIÓN DEL DISPARADOR MÓVIL
+                        if (typeof window.aplicarRestriccionesUsuario === 'function') {
+                            window.aplicarRestriccionesUsuario();
+                        }
+                            // Sincronizamos la barra de perfil estilo Google Apps (Si existen los elementos en la barra superior)
+                            const avatar = document.getElementById('user-avatar-btn');
+                            const nameLabel = document.getElementById('user-display-name');
+                            const roleLabel = document.getElementById('user-display-role');
+                            
+                            if (nameLabel) nameLabel.innerText = datosUsuario.nombre;
+                            if (roleLabel) roleLabel.innerText = datosUsuario.rol;
+                            
+                            if (avatar) {
+                                if (datosUsuario.foto) {
+                                    avatar.style.backgroundImage = `url('${datosUsuario.foto}')`;
+                                    avatar.innerText = "";
+                                } else {
+                                    avatar.style.backgroundImage = "none";
+                                    avatar.innerText = datosUsuario.nombre.charAt(0).toUpperCase();
+                                }
+                            }
+
+                            // 🚀 DESBLOQUEO DEL ESCENARIO: Ocultamos el login si todo es correcto
+                            if (modalLogin) modalLogin.style.display = 'none';
+
+                            // Disparamos la clonación de la biblioteca en el LocalStorage
+                            sincronizarBibliotecaLocal();
+
+                        } else {
+                            // Si no hay usuario firmado, bloqueamos la app forzando el login
+                            window.esSembradorMaestro = false;
+                            if (modalLogin) modalLogin.style.display = 'flex';
+                            const dropdownCard = document.getElementById('user-dropdown-card');
+                            if (dropdownCard) dropdownCard.style.display = 'none';
+                        }
+                    });
+
+                    // Cierre de sesión de seguridad
+                    window.ejecutarCerrarSesion = () => {
+                        signOut(auth).then(() => {
+                            window.location.reload(); // Al salir, limpia configuraciones locales
+                        });
+                    };
+
+                    window.tglDropdownUsuario = () => {
+                        const card = document.getElementById('user-dropdown-card');
+                        if(card) card.style.display = (card.style.display === 'none' || card.style.display === '') ? 'flex' : 'none';
+                    };
+
+                    // --- 📦 PARTE 3: MOTOR DE SINCRONIZACIÓN OFFLINE (LOCALSTORAGE DATA) ---
+                    async function sincronizarBibliotecaLocal() {
+                        if (!navigator.onLine) {
+                            console.log("🔌 Modo Offline activo: Trabajando con la copia local.");
+                            if(typeof cargarCatalogoNube === 'function') cargarCatalogoNube();
+                            return;
+                        }
+
+                        console.log("☁️ Sincronizando catálogo con la nube...");
+                        try {
+                            const querySnapshot = await getDocs(collection(db, "cantos"));
+                            let bibliotecaLocal = {};
+
+                            querySnapshot.forEach((docSnap) => {
+                                bibliotecaLocal[docSnap.id] = docSnap.data();
+                            });
+
+                            // Guardamos la base entera clonada en el disco local del dispositivo
+                            localStorage.setItem('peque_sembrador_biblioteca', JSON.stringify(bibliotecaLocal));
+                            console.log(`📦 Bóveda clonada con éxito: ${Object.keys(bibliotecaLocal).length} cantos listos para uso offline.`);
+                            
+                            if(typeof cargarCatalogoNube === 'function') cargarCatalogoNube();
+                        } catch (err) {
+                            console.error("Error al clonar biblioteca:", err);
+                        }
+                    }
+                </script>
+
+<!-- =============================================================== -->
+<!-- 🔒 MODAL DE AUTENTICACIÓN MAESTRO (EL LIENZO DE ACCESO) -->
+<!-- =============================================================== -->
+<div id="modal-login" class="glass-overlay" style="display: flex; position: fixed; inset: 0; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(35px) saturate(120%); -webkit-backdrop-filter: blur(35px) saturate(120%); align-items: center; justify-content: center; z-index: 999999; box-sizing: border-box; padding: 20px;">
+    
+    <div class="glass-card" style="background: rgba(20, 20, 20, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9); box-sizing: border-box;">
+        
+        <h2 style="font-size: 20px; letter-spacing: 4px; margin: 0 0 10px 0; color: white; font-weight: 300; text-transform: uppercase;">PEQUEÑO SEMBRADOR</h2>
+        <p style="font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 30px 0; color: #eee;">Acceso al Escenario Litúrgico</p>
+        
+        <!-- ⌨️ CASILLEROS PARA TEXTO Y CONTRASEÑA -->
+        <div id="auth-forms-container" style="display: flex; flex-direction: column; gap: 12px;">
+            <input type="email" id="auth-email" placeholder="CORREO ELECTRÓNICO" style="width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; border-radius: 6px; font-size: 12px; outline: none; box-sizing: border-box;">
+            <input type="password" id="auth-pass" placeholder="CONTRASEÑA" style="width: 100%; background: #000; border: 1px solid #333; padding: 12px; color: #fff; border-radius: 6px; font-size: 12px; outline: none; box-sizing: border-box;">
+            
+            <!-- 🔑 BOTÓN 1: ENTRAR CON CORREO -->
+            <button class="btn-glass" onclick="ejecutarAccesoCorreo()" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.15); color: white; padding: 12px 24px; border-radius: 30px; font-weight: 500; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; font-size: 11px; width: 100%; margin-top: 10px; -webkit-tap-highlight-color: transparent;">
+                Entrar al escenario 🔑
+            </button>
+        </div>
+
+        <div style="margin: 20px 0; font-size: 10px; opacity: 0.3; letter-spacing: 2px; color: white;">Ó</div>
+
+        <!-- 🔵 BOTÓN 2: ENTRAR CON GOOGLE AUTH -->
+        <button class="btn-glass" onclick="ejecutarAccesoGoogle()" style="background: rgba(255,255,255,0.02); border: 1px solid #4fc3f7; color: #4fc3f7; padding: 12px 24px; border-radius: 30px; font-weight: 500; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; font-size: 11px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; -webkit-tap-highlight-color: transparent;">
+            <svg style="width:14px; height:14px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 5.48 1 0 6.48 0 13s5.48 12 12.24 12c7.06 0 11.75-4.97 11.75-11.95 0-.815-.087-1.435-.196-1.765H12.24z"/></svg>
+            Cuenta de Google
+        </button>
+
+        <!-- 🔁 CONMUTADOR LOG/REGISTRO -->
+        <p id="toggle-auth-mode" onclick="conmutarModoAuth()" style="font-size: 11px; color: var(--accent, #4fc3f7); margin: 25px 0 0 0; cursor: pointer; text-decoration: underline; font-style: italic; -webkit-tap-highlight-color: transparent;">
+            ¿Eres nuevo? Regístrate aquí
+        </p>
+    </div>
+</div>
+<!-- =============================================================== -->
+
+
+
+    <!-- Primero el motor de acordes para que esté disponible -->
+    <script src="acordes-engine.js"></script>
+
+    <!-- Después tu script principal que controla la interfaz -->
+    <script src="script.js"></script>
+    
+<!-- Enlace de comunicación para la instalación y el asistente de memoria interna -->
+<link rel="manifest" href="manifest.json">
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js")
+        .then((reg) => console.log("🛰️ Asistente de memoria acoplado con éxito."))
+        .catch((err) => console.error("🚨 Error al conectar asistente:", err));
+    });
+  }
+</script>
+
+</body>
+</html>

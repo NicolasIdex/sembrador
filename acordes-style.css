@@ -1,0 +1,116 @@
+/**
+ * ADN VISUAL DE ACORDES FLOTANTES
+ * Solo estilos para los widgets musicales
+ */
+
+
+
+
+/* --- MODOS DE DISEÑO (Vía Clases en el Libro) --- */
+
+/* Modo: Solo Texto */
+.ac-txt .acorde-widget {
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    color: var(--ac-clr) !important;
+}
+
+/* Modo: Relleno Sólido */
+.ac-rel .acorde-widget {
+    background: var(--ac-clr) !important;
+    color: #fff !important;
+}
+
+/* Modo: Borde Fino */
+.ac-bor .acorde-widget {
+    background: rgba(var(--accent-rgb), 0.05) !important;
+    border: 1px solid var(--ac-clr) !important;
+    color: var(--ac-clr) !important;
+}
+
+/* Ajustamos la animación para que no brinque desde tan lejos */
+@keyframes siembraAcorde {
+    from { opacity: 0; transform: translate(-50%, -80%) scale(0.5); }
+    to { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+
+
+
+/* El cursor dentro de la estrofa siempre debe ser palito de texto, 
+   incluso si pasas por los márgenes del widget */
+.box-estrofa {
+    cursor: text !important;
+}
+
+/* Solo cuando el mouse está exactamente sobre el widget, mostramos la mano */
+.acorde-widget:hover {
+    cursor: pointer !important;
+    background: rgba(var(--accent-rgb), 0.25);
+}
+/* 🌟 IDENTIDAD ORO PARA LOS BOTONES DE TRANSPOSICIÓN DE USUARIO */
+.btn-user-transporte svg {
+    stroke: #ffd600 !important; 
+    filter: drop-shadow(0 0 5px rgba(255,214,0,0.4));
+}
+/* --- 🚀 RECONSTRUCCIÓN ULTRA-BLINDADA DEL ACORDE-WIDGET SEDA 3.0 --- */
+.acorde-widget {
+    /* 1. Posicionamiento: Fantasma flotante que nace en la sílaba */
+    position: absolute !important; 
+    display: inline-block !important; /* 🚀 CAMBIO: Da rigidez de bloque al texto completo */
+    
+    /* 2. Fuerza de Maquetación: Eliminamos el width y height en 0 que aplastaban el fondo */
+    width: max-content !important;    /* 🚀 CAMBIO: Mide exactamente lo que mida el string (Am7, C#m) */
+    height: 1.2em !important;          /* 🚀 CAMBIO: Altura elástica para envolver la tipografía */
+    white-space: nowrap !important;   /* Evita saltos de línea internos */
+    overflow: visible !important;
+    
+    /* 3. Elevación Cuántica: Centramos respecto a la sílaba y elevamos sobre el renglón */
+    /* 🚀 AJUSTADO: Al cambiar el ancho de 0 a max-content, transform mantiene el centro exacto */
+    transform: translate(-50%, -100%) scale(1) !important;
+    margin-top: 0.7em !important;    /* Colchón exacto para que flote sobre la estrofa */
+    
+    /* 4. Estética de Objeto: La burbuja esmerilada premium */
+    padding: 0.5px 5px !important;      /* 🚀 CAMBIO: Más aire (colchón) para que el relleno y borde respiren */
+    background: rgba(var(--accent-rgb), 0.16) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 5px;               /* Un poco más redondeado para el modo Relleno */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* 5. Tipografía Musical */
+    font-family: var(--ac-fn);
+    font-size: var(--ac-sz);
+    color: var(--ac-clr);
+    font-weight: 800;
+    line-height: 1 !important;      /* 🚀 CAMBIO: Da balance vertical al relleno */
+    display: inline-flex !important;
+    cursor: pointer !important;
+    z-index: 50;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.06em !important; 
+     justify-content: center !important;
+     text-align: center !important;
+    /* Animación de nacimiento elástico */
+    animation: siembraAcordeSeda 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+
+@keyframes siembraAcordeSeda {
+    from { opacity: 0; transform: translate(-50%, -80%) scale(0.6); }
+    to { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+
+/* Estado activo cuando seleccionas la puchita en la pantalla */
+.acorde-widget.activa {
+    background: var(--accent) !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 15px var(--accent);
+    transform: translate(-50%, -105%) scale(1.1) !important; /* Brinco controlado sin romper la alineación */
+    z-index: 60;
+}
