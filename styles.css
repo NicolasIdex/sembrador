@@ -1393,160 +1393,110 @@ html.modo-noche #v-testigo {
 }
 
 /* ============================================================
-   📱 REINGENIERÍA PARA TABLETAS (GALAXY TAB S9+) Y MÓVILES
+   📱 ARQUITECTURA SEDA INTERACTIVA (3 PANELES AL 100% DEL MARCO)
    ============================================================ */
 @media (max-width: 1100px) {
-    :root {
-        /* Reducimos los colchones de las hojas para ganar espacio aéreo en la tablet */
-        --h1-mt: 30mm; 
-        --h2-mt: 15mm; 
-        --zoom-level: 0.85; /* Elevamos el zoom base para lectura táctil */
-    }
 
-    /* 1. EL LIBRO ELÁSTICO: Obliga a las hojas a encajar en el ancho de la tablet */
-    #libro {
-        transform: scale(var(--zoom-level)) !important;
-        transform-origin: top center !important;
-        gap: 30px !important; /* Compactamos la separación de hojas */
-        width: 100% !important;
-        max-width: 100vw !important;
-    }
-
-    .hoja {
-        /* Mantenemos la proporción carta pero permitimos que el chasis sea fluido */
-        max-width: 92vw !important; 
-        height: auto !important; /* La hoja se estira hacia abajo de forma natural */
-        min-height: 279.4mm !important;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.6) !important;
-        padding-bottom: 20mm !important;
-    }
-
-    /* 2. EL VIEWPORT RE-CALIBRADO: Activamos el deslizamiento suave con el dedo */
-    #viewport {
-        padding: 20px 0 !important;
-        -webkit-overflow-scrolling: touch; /* Suavidad tipo Apple/Android en el scroll */
-    }
-
-    /* 3. PERSIANA INVISIBLE DE PANELES (Para que no estorben la lectura en la Tab) */
-    #pandora { left: -340px !important; }
-    #biblioteca { right: -340px !important; }
-    #toggle-p { left: 0px !important; }
-    
-    /* Reajuste del puente de mando superior para pantallas compactas */
-    #top-bar {
-        width: 98% !important;
-        height: 65px !important;
-        padding: 0 15px !important;
-    }
-    
-    .btn-peludo-top {
-        width: 38px !important;
-        height: 38px !important;
-    }
-    
-    .icon-top {
-        width: 24px !important;
-        height: 24px !important;
-    }
-}
-
-/* ============================================================
-   🔥 RECONFIGURACIÓN EXTREMA PARA TELÉFONOS INTELIGENTES
-   ============================================================ */
-@media (max-width: 600px) {
-    :root {
-        --zoom-level: 0.55; /* En teléfonos compactamos más el lienzo global */
-        --h1-mt: 20mm;
-    }
-    
-    #top-bar {
-        border-radius: 0 0 15px 15px !important;
-    }
-    
-    /* Escondemos el indicador de zoom escrito en el cel para ahorrar espacio */
-    #zoom-txt { display: none !important; }
-    
-    /* Forzamos a que las cajas de estrofas no se salgan del borde del teléfono */
-    .box-estrofa {
-        max-width: 90% !important;
-        min-width: 280px !important;
-    }
-}
-/* ============================================================
-   📱 USABILIDAD SEDA TÁCTIL: GALAXY TAB Y MÓVILES
-   ============================================================ */
-@media (max-width: 1100px) {
-    /* 1. Escondemos los tiradores nativos de texto en modo móvil para máxima limpieza */
-    #toggle-p, #toggle-b { 
-        display: none !important; 
-    }
-
-    /* 2. Forzamos a que el lienzo ocupe el 100% de la pantalla sin estorbos */
-    #viewport {
-        position: relative !important;
+    /* 1. EL CONTENEDOR MAESTRO: Un riel horizontal que estira la pantalla */
+    #main-container {
         width: 100vw !important;
         height: 100vh !important;
-        padding: 10px 0 !important;
-        z-index: 5 !important;
+        position: relative !important;
+        overflow: hidden !important;
     }
 
-    /* 3. Elevación de las capas de control táctil sobre el lienzo */
-    #pandora, #biblioteca {
-        height: 100vh !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        box-shadow: 0 0 40px rgba(0,0,0,0.8) !important;
-        z-index: 60000 !important; /* Por encima de la Top Bar para uso manual */
-    }
-}
-/* ============================================================
-   📱 RECONFIGURACIÓN ELÁSTICA PARA GALAXY TAB A9+ (VERTICAL)
-   ============================================================ */
-@media (max-width: 850px) {
-    /* 1. Apagamos el zoom rígido de PC que deslinea las notas en pantallas angostas */
-    #libro {
-        transform: none !important; 
-        width: 100% !important;
-        max-width: 100vw !important;
-        gap: 15px !important;
-        padding: 0 10px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 2. La Hoja Líquida: Ocupará todo el ancho de tu tableta parada sin desbordarse */
-    .hoja {
-        width: 100% !important; 
-        max-width: 100vw !important;
-        height: auto !important; /* Crece elásticamente hacia abajo según las estrofas */
-        min-height: 100vh !important;
-        padding: 15px !important;
-        box-sizing: border-box !important;
-        box-shadow: none !important; /* Quitamos sombras pesadas para que el procesador vaya rápido */
-    }
-
-    /* 3. El Viewport Seguro: Evita que la pantalla baile hacia la izquierda o derecha */
+    /* 2. EL VIEWPORT (Centro): Desactiva el zoom del 65% y ocupa toda la pantalla */
     #viewport {
-        width: 100% !important;
-        padding: 10px 0 !important;
-        overflow-x: hidden !important; 
-        -webkit-overflow-scrolling: touch; /* Desplazamiento ultra-suave con el dedo */
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding-top: 85px !important; /* Espacio para que la barra de arriba no tape el título */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        z-index: 10 !important;
     }
 
-    /* 4. El Secreto LEGO Vertical: Rompe las posiciones fijas de los pixeles */
-    /* Obliga a las estrofas a formarse una debajo de la otra de forma perfecta e higiénica */
+    #libro {
+        transform: none !important; /* 🔥 FULMINADO EL ZOOM DEL 65%: El texto se lee al 100% nativo */
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+
+    .hoja {
+        width: 100vw !important; /* La hoja es el lienzo total del presbiterio */
+        max-width: 100vw !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        border: none !important; /* Limpieza de bordes rígidos */
+    }
+
+    /* 3. PANDORA (Izquierda): Ocupa el 100% de la pantalla táctil en primer plano */
+    #pandora {
+        position: absolute !important;
+        top: 0 !important; bottom: 0 !important;
+        width: 100vw !important; /* Mismo tamaño exacto que la hoja */
+        left: -100vw !important; /* Escondido exactamente a la izquierda */
+        background: rgba(12, 12, 12, 0.98) !important;
+        z-index: 60000 !important; /* Por encima de todo para que no lo tape la barra */
+        transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) !important;
+        padding: 85px 20px 20px 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 4. BIBLIOTECA (Derecha): Ocupa el 100% de la pantalla táctil en primer plano */
+    #biblioteca {
+        position: absolute !important;
+        top: 0 !important; bottom: 0 !important;
+        width: 100vw !important; /* Mismo tamaño exacto que la hoja */
+        right: -100vw !important; /* Escondido exactamente a la derecha */
+        background: rgba(12, 12, 12, 0.98) !important;
+        z-index: 60000 !important; /* Por encima de todo para control manual */
+        transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) !important;
+        padding: 85px 20px 20px 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Clases reactivas elásticas para cuando el dedo active los paneles */
+    .pandora-abierta #pandora { transform: translateX(100vw) !important; }
+    .biblioteca-abierta #biblioteca { transform: translateX(-100vw) !important; }
+
+    /* 5. EL PUENTE DE MANDO (Top Bar): Centrado perfecto e inmune a bloqueos */
+    #top-bar {
+        width: 95% !important; /* Un listón elegante flotando al centro */
+        max-width: 95vw !important;
+        height: 60px !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(0) !important;
+        z-index: 50000 !important; /* Debajo de los paneles cuando se abren, evitando estorbar */
+        padding: 0 15px !important;
+        border-radius: 0 0 15px 15px !important;
+        justify-content: space-between !important;
+    }
+
+    /* Ajuste de los botones para que quepan en la fila del teléfono sin amontonarse */
+    .btn-peludo-top { width: 36px !important; height: 36px !important; }
+    .icon-top { width: 22px !important; height: 22px !important; }
+    #zoom-txt { display: none !important; } /* Zoom ocultado por irrelevante en modo responsivo */
+
+    /* El avatar de perfil y su menú ya no se cortan ni se esconden */
+    #user-profile-dock { margin-left: auto !important; }
+    #user-dropdown-card {
+        width: 260px !important;
+        right: 10px !important;
+        top: 70px !important;
+        z-index: 70000 !important; /* Siempre al frente de la app */
+    }
+
+    /* 6. REGLA ATÓMICA DE ESTROFAS: Bloques limpios apilados de lectura vertical */
     .box-estrofa {
-        position: relative !important; 
-        left: 0 !important;
-        top: 0 !important;
+        position: relative !important;
+        left: 0 !important; top: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin-bottom: 25px !important; /* Espacio de aire sagrado entre cada estrofa */
-    }
-
-    /* 5. Ergonomía del pulgar: Botones de notas más grandes para no fallar el toque */
-    .fly-btn, .fly-btn-mini, .al-btn {
-        min-height: 46px !important; /* Tamaño perfecto para la yema del dedo */
-        font-size: 13px !important; /* Letra clara para ver los acordes en el coro */
+        margin-bottom: 30px !important;
+        padding: 10px !important;
     }
 }
-
