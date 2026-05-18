@@ -1393,11 +1393,11 @@ html.modo-noche #v-testigo {
 }
 
 /* ============================================================
-   📱 ARQUITECTURA SEDA INTERACTIVA (3 PANELES AL 100% DEL MARCO)
+   📱 DISEÑO SIMÉTRICO: PANELES AL 50% CON CRISTAL TRASLÚCIDO
    ============================================================ */
 @media (max-width: 1100px) {
 
-    /* 1. EL CONTENEDOR MAESTRO: Un riel horizontal que estira la pantalla */
+    /* Contenedor maestro elástico */
     #main-container {
         width: 100vw !important;
         height: 100vh !important;
@@ -1405,98 +1405,145 @@ html.modo-noche #v-testigo {
         overflow: hidden !important;
     }
 
-    /* 2. EL VIEWPORT (Centro): Desactiva el zoom del 65% y ocupa toda la pantalla */
+    /* El escenario central (Letra) se mantiene limpio de fondo */
     #viewport {
         position: absolute !important;
         inset: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        padding-top: 85px !important; /* Espacio para que la barra de arriba no tape el título */
+        padding-top: 85px !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
         z-index: 10 !important;
     }
 
     #libro {
-        transform: none !important; /* 🔥 FULMINADO EL ZOOM DEL 65%: El texto se lee al 100% nativo */
+        transform: none !important; /* Texto al 100% nativo y grande */
         width: 100% !important;
         max-width: 100vw !important;
     }
 
     .hoja {
-        width: 100vw !important; /* La hoja es el lienzo total del presbiterio */
+        width: 100vw !important;
         max-width: 100vw !important;
-        min-height: 100vh !important;
         height: auto !important;
+        min-height: 100vh !important;
         padding: 20px !important;
         box-sizing: border-box !important;
-        border: none !important; /* Limpieza de bordes rígidos */
+        border: none !important;
     }
 
-    /* 3. PANDORA (Izquierda): Ocupa el 100% de la pantalla táctil en primer plano */
+    /* 🚀 PANDORA (Izquierda): Unificado exactamente al 50% traslúcido */
     #pandora {
         position: absolute !important;
         top: 0 !important; bottom: 0 !important;
-        width: 100vw !important; /* Mismo tamaño exacto que la hoja */
-        left: -100vw !important; /* Escondido exactamente a la izquierda */
-        background: rgba(12, 12, 12, 0.98) !important;
-        z-index: 60000 !important; /* Por encima de todo para que no lo tape la barra */
+        width: 50vw !important; /* 50% del ancho de la tableta */
+        left: -50vw !important; /* Escondido a la izquierda de la pantalla */
+        background: rgba(10, 10, 10, 0.75) !important; /* Transparencia oscura elegante */
+        backdrop-filter: blur(20px) saturate(120%) !important; /* Efecto esmerilado premium */
+        -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+        z-index: 60000 !important;
         transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) !important;
-        padding: 85px 20px 20px 20px !important;
+        padding: 85px 15px 20px 15px !important;
         box-sizing: border-box !important;
     }
 
-    /* 4. BIBLIOTECA (Derecha): Ocupa el 100% de la pantalla táctil en primer plano */
+    /* 🚀 BIBLIOTECA (Derecha): Unificado exactamente al 50% traslúcido */
     #biblioteca {
         position: absolute !important;
         top: 0 !important; bottom: 0 !important;
-        width: 100vw !important; /* Mismo tamaño exacto que la hoja */
-        right: -100vw !important; /* Escondido exactamente a la derecha */
-        background: rgba(12, 12, 12, 0.98) !important;
-        z-index: 60000 !important; /* Por encima de todo para control manual */
+        width: 50vw !important; /* 50% del ancho de la tableta */
+        right: -50vw !important; /* Escondido a la derecha de la pantalla */
+        background: rgba(10, 10, 10, 0.75) !important; /* Transparencia idéntica a Pandora */
+        backdrop-filter: blur(20px) saturate(120%) !important; /* Mismo desenfoque */
+        -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+        z-index: 60000 !important;
         transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) !important;
-        padding: 85px 20px 20px 20px !important;
+        padding: 85px 15px 20px 15px !important;
+        box-sizing: border-box !important;
+        border-radius: 0 !important;
+    }
+
+    /* 🛠️ HOMOGENEIZACIÓN DE JALADERAS (UNIFICADAS Y REDISEÑADAS PARA EL DEDO) */
+    /* Rompemos la asimetría de IDs y les damos el mismo tamaño ergonómico táctil */
+    #toggle-p, #toggle-b {
+        display: flex !important; /* Aseguramos que se muestren en la tableta */
+        position: absolute !important;
+        top: 50% !important;
+        width: 44px !important; /* Área táctil ampliada perfecta para la yema del dedo */
+        height: 70px !important;
+        background: var(--accent) !important;
+        color: #000000 !important;
+        font-size: 20px !important;
+        font-weight: bold !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        z-index: 61000 !important; /* Siempre por encima del cristal */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+        transition: background 0.3s !important;
+    }
+    
+   #toggle-p, #toggle-b {
+    /* ... Conserva todo tu padding, colores y bordes anteriores ... */
+    z-index: 999999 !important; /* 🔥 Forzamos a que las pestañas floten por encima de la hoja blanca desde el inicio */
+}
+    
+    #toggle-b {
+        left: -44px !important; /* Se pega por fuera del borde de la Biblioteca */
+        border-radius: 15px 0 0 15px !important;
+        transform: translateY(-50%) !important;
+    }
+
+ #main-container.pandora-abierta #pandora { 
+    transform: translateX(50vw) !important; 
+    z-index: 999999 !important; /* 🔥 Salta al frente absoluto por encima de la Top Bar */
+}
+
+#main-container.biblioteca-abierta #biblioteca { 
+    transform: translateX(-50vw) !important; 
+    z-index: 999999 !important; /* 🔥 Salta al frente absoluto por encima de la Top Bar */
+
+
+    /* 🚀 SINCRO DE LA TOP BAR CON LA HOJA PRINCIPAL */
+    #top-bar {
+        position: fixed !important;
+        top: 0 !important; left: 0 !important; right: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        height: 65px !important;
+        z-index: 50000 !important; /* Se mantiene al frente en el escenario limpio */
+        padding: 0 15px !important;
+        border-radius: 0 0 15px 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
         box-sizing: border-box !important;
     }
 
-    /* Clases reactivas elásticas para cuando el dedo active los paneles */
-    .pandora-abierta #pandora { transform: translateX(100vw) !important; }
-    .biblioteca-abierta #biblioteca { transform: translateX(-100vw) !important; }
-
-    /* 5. EL PUENTE DE MANDO (Top Bar): Centrado perfecto e inmune a bloqueos */
-    #top-bar {
-        width: 95% !important; /* Un listón elegante flotando al centro */
-        max-width: 95vw !important;
-        height: 60px !important;
-        left: 50% !important;
-        transform: translateX(-50%) translateY(0) !important;
-        z-index: 50000 !important; /* Debajo de los paneles cuando se abren, evitando estorbar */
-        padding: 0 15px !important;
-        border-radius: 0 0 15px 15px !important;
-        justify-content: space-between !important;
-    }
-
-    /* Ajuste de los botones para que quepan en la fila del teléfono sin amontonarse */
     .btn-peludo-top { width: 36px !important; height: 36px !important; }
     .icon-top { width: 22px !important; height: 22px !important; }
-    #zoom-txt { display: none !important; } /* Zoom ocultado por irrelevante en modo responsivo */
+    #zoom-txt { display: none !important; }
 
-    /* El avatar de perfil y su menú ya no se cortan ni se esconden */
+    /* El avatar de perfil se mueve al centro libre para que no lo tape ningún panel */
     #user-profile-dock { margin-left: auto !important; }
     #user-dropdown-card {
-        width: 260px !important;
-        right: 10px !important;
+        width: 240px !important;
+        right: 15px !important;
         top: 70px !important;
-        z-index: 70000 !important; /* Siempre al frente de la app */
+        z-index: 70000 !important; /* Queda libre por encima de los paneles */
     }
 
-    /* 6. REGLA ATÓMICA DE ESTROFAS: Bloques limpios apilados de lectura vertical */
+    /* Lista vertical elástica para las estrofas */
     .box-estrofa {
         position: relative !important;
         left: 0 !important; top: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 25px !important;
         padding: 10px !important;
     }
 }
